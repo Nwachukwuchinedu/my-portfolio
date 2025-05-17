@@ -4,25 +4,24 @@ import { useInView } from 'react-intersection-observer';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const testimonials = [
-  // {
-  //   name: "Sarah Johnson",
-  //   role: "CEO, TechStart",
-  //   image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
-  //   text: "John's expertise in full-stack development helped us launch our product ahead of schedule. His attention to detail and problem-solving skills are exceptional."
-  // },
-  // {
-  //   name: "Michael Chen",
-  //   role: "CTO, InnovateCorp",
-  //   image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-  //   text: "Working with John was a game-changer for our team. His technical knowledge and ability to mentor others significantly improved our development process."
-  // },
-  // {
-  //   name: "Emily Rodriguez",
-  //   role: "Product Manager, DesignPro",
-  //   image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
-  //   text: "John's ability to translate complex technical concepts into user-friendly solutions is remarkable. He's a true professional who delivers exceptional results."
-  // }
-  {}
+  {
+    name: "Osarimen Destiny",
+    role: "CEO, TechStart",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
+    text: "John's expertise in full-stack development helped us launch our product ahead of schedule. His attention to detail and problem-solving skills are exceptional."
+  },
+  {
+    name: "Michael Chen",
+    role: "CTO, InnovateCorp",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
+    text: "Working with John was a game-changer for our team. His technical knowledge and ability to mentor others significantly improved our development process."
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Product Manager, DesignPro",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+    text: "John's ability to translate complex technical concepts into user-friendly solutions is remarkable. He's a true professional who delivers exceptional results."
+  }
 ];
 
 const Testimonials = () => {
