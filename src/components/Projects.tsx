@@ -39,6 +39,16 @@ const projects = [
     github: "https://github.com/Nwachukwuchinedu/Course-Orbit-API",
     live: "https://course-orbit-api.onrender.com/",
   },
+  {
+    title: "Multi Role Blog Platform",
+    description:
+      "A platform where users can register as Readers, Authors, or Admins, and can post, like, and comment on blog posts.",
+    image:
+      "https://multi-role-blog-platform.vercel.app/assets/favicon-DKNMzfRO.png",
+    tags: ["Node.js", "Express.js", "REST API", "Vue.js", "MongoDB"],
+    github: "https://github.com/Nwachukwuchinedu/Multi-Role-Blog-Platform",
+    live: "https://multi-role-blog-platform.vercel.app/",
+  },
 ];
 
 const ProjectCard = ({ project, index }) => {
