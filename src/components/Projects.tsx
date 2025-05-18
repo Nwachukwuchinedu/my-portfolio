@@ -49,6 +49,14 @@ const projects = [
     github: "https://github.com/Nwachukwuchinedu/Multi-Role-Blog-Platform",
     live: "https://multi-role-blog-platform.vercel.app/",
   },
+  {
+    title: "Clergy Website",
+    description: "A platform where teachings are uploaded by a pastor.",
+    image: "https://clergy-website.vercel.app/assets/favicon-CWSdXv-e.png",
+    tags: ["Node.js", "Express.js", "REST API", "Vue.js", "MongoDB"],
+    github: "https://github.com/Nwachukwuchinedu/Clergy-Website",
+    live: "https://clergy-website.vercel.app/",
+  },
 ];
 
 const ProjectCard = ({ project, index }) => {
