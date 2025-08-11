@@ -57,6 +57,24 @@ const projects = [
     github: "https://github.com/Nwachukwuchinedu/Clergy-Website",
     live: "https://clergy-website.vercel.app/",
   },
+  {
+    title: "Campus Connect (in progress)",
+    description:
+      "Developed a comprehensive full-stack university services marketplace platform using Django REST Framework and React.js, enabling students to discover, offer, and manage campus-based services with real-time communication capabilities.",
+    image: "https://campusconnect-omega.vercel.app/favicon.ico",
+    tags: ["Django", "Python", "React", "WebSocket"],
+    github: "#",
+    live: "https://campusconnect-omega.vercel.app/",
+  },
+  {
+    title: "Chat Web App (in progress)",
+    description:
+      "A modern, real-time chat application built with Django backend and React frontend, featuring secure authentication, direct messaging, and WebSocket-powered real-time communication.",
+    image: "https://chat-web-app-mocha.vercel.app/favicon.ico",
+    tags: ["React", "TypeScript", "Django", "WebSocket"],
+    github: "#",
+    live: "https://chat-web-app-mocha.vercel.app/",
+  },
 ];
 
 const ProjectCard = ({ project, index }) => {
