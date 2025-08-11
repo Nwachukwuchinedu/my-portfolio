@@ -10,6 +10,23 @@ const Experience = () => {
   });
 
   const experiences = [
+        {
+      type: "work",
+      title: "Backend Developer & Backend Team Lead",
+      company: "Diviva Ltd",
+      location: "Remote (Lagos, Nigeria)",
+      period: "2025",
+      description: `Led the backend team at Diviva Ltd, architecting and 
+      developing robust RESTful APIs for multiple platforms, including a
+       recruitment platform and a real estate solution.
+        Oversaw the implementation of advanced features such as
+         Applicant Tracking Systems (ATS) and an AI-powered chat
+          application for automated user engagement. 
+          Utilized Node.js, Python, and MongoDB to deliver scalable,
+           high-performance backend services.
+            Collaborated cross-functionally to ensure seamless integration
+             and deployment of backend solutions in a remote-first environment.`,
+    },
     {
       type: "work",
       title: "Frontend Web Developer",
@@ -23,23 +40,6 @@ integrated REST APIs, and implemented
 authentication. Ensured cross-browser compatibility and
 optimized application performance. Built a certifica
 and birthday generator.`,
-    },
-    {
-      type: "work",
-      title: "Backend Developer & Backend Team Lead",
-      company: "Diviva Ltd",
-      location: "Remote (Lagos, Nigeria)",
-      period: "2025 - Present",
-      description: `Led the backend team at Diviva Ltd, architecting and 
-      developing robust RESTful APIs for multiple platforms, including a
-       recruitment platform and a real estate solution.
-        Oversaw the implementation of advanced features such as
-         Applicant Tracking Systems (ATS) and an AI-powered chat
-          application for automated user engagement. 
-          Utilized Node.js, Python, and MongoDB to deliver scalable,
-           high-performance backend services.
-            Collaborated cross-functionally to ensure seamless integration
-             and deployment of backend solutions in a remote-first environment.`,
     },
     {
       type: "work",
