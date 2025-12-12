@@ -1,91 +1,106 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen flex items-center relative overflow-hidden">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]" />
+    <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen flex items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-lg"
-        >
-          <span className="inline-block bg-[#D9F99D] dark:bg-green-900 dark:text-green-300 text-black text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wide uppercase">
-            Full Stack Developer
-          </span>
-          <h1 className="text-6xl md:text-[5rem] font-bold tracking-tight leading-[1] mb-6 text-gray-900 dark:text-white">
+        <div className="max-w-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="inline-block bg-[#D9F99D] text-black text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wide uppercase">
+              Full Stack Developer
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-6xl md:text-[5rem] font-bold tracking-tight leading-[1] mb-6"
+          >
             Turn your ideas into digital reality
-          </h1>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
-            I build accessible, pixel-perfect, performant, and delightful digital
-            experiences. Experienced in building scalable web applications.
-          </p>
+          </motion.h1>
 
-          <div className="flex flex-wrap gap-4 mb-12">
-            <a
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg text-gray-500 mb-8 leading-relaxed max-w-md"
+          >
+            I craft responsive, high-performance web applications with modern technologies, turning complex requirements into seamless user experiences.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-wrap gap-4 items-center mb-10"
+          >
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="#projects"
-              className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition duration-300 shadow-lg"
+              className="bg-black text-white px-8 py-4 rounded-full font-medium transition"
             >
               View Projects
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.05, backgroundColor: "#f3f4f6" }}
+              whileTap={{ scale: 0.95 }}
               href="#contact"
-              className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition duration-300 hover:border-gray-900 dark:hover:border-white shadow-sm"
+              className="px-6 py-4 rounded-full font-medium text-gray-600 transition"
             >
               Contact Me
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
-          <div className="flex gap-4">
-            <a
-              href="https://github.com/Nwachukwuchinedu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition bg-white dark:bg-gray-800"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/chinedu-nwachukwu-921188288"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition bg-white dark:bg-gray-800"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.twitter.com/simeon3725"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition bg-white dark:bg-gray-800"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:chinedu.simeon2020@gmail.com"
-              className="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition bg-white dark:bg-gray-800"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="flex items-center gap-4"
+          >
+            <div className="flex gap-2">
+              {[
+                { href: "https://github.com/Nwachukwuchinedu", icon: Github },
+                { href: "https://www.linkedin.com/in/chinedu-nwachukwu-921188288", icon: Linkedin },
+                { href: "https://www.twitter.com/simeon3725", icon: Twitter },
+                { href: "mailto:chinedu.simeon2020@gmail.com", icon: Mail },
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  whileHover={{ y: -5, backgroundColor: "#e5e7eb" }}
+                  href={social.href}
+                  target={social.href.startsWith("mailto") ? "_self" : "_blank"}
+                  rel="noopener noreferrer"
+                  className="p-2 bg-gray-100 rounded-full transition"
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
+            </div>
+            <div className="text-sm font-medium">
+              <span className="text-gray-500">Available for work</span>
+            </div>
+          </motion.div>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.5, type: "spring" }}
           className="relative"
         >
-          <div className="rounded-[48px] overflow-hidden bg-[#F3F4F6] dark:bg-gray-800 aspect-square relative flex items-center justify-center shadow-2xl dark:shadow-none">
-            <div className="absolute inset-0 bg-[#E9D5FF] dark:bg-purple-900/50"></div>
-            <div className="absolute inset-0 bg-white/40 dark:bg-black/20 backdrop-blur-3xl rounded-full translate-x-12 translate-y-12 blur-3xl"></div>
+          <div className="rounded-[48px] overflow-hidden bg-[#F3F4F6] aspect-square relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#E9D5FF]"></div>
             <motion.div
               animate={{ y: [0, -20, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="text-[12rem] md:text-[15rem] relative z-10 drop-shadow-2xl"
             >
               👨‍💻

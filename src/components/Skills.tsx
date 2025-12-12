@@ -1,5 +1,5 @@
 import { Database, Globe, Layout, Server, PenTool as Tool } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const Skills = () => {
   const skillCategories = [
@@ -32,49 +32,35 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 px-6 max-w-7xl mx-auto text-center">
-      <motion.span
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-gray-400 dark:text-gray-500 font-medium text-sm mb-4 block uppercase tracking-wider"
+        transition={{ duration: 0.6 }}
       >
-        What I do
-      </motion.span>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
-        className="text-5xl font-bold mb-6 max-w-2xl mx-auto text-gray-900 dark:text-white"
-      >
-        Skills & Expertise
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-        className="text-gray-500 dark:text-gray-400 mb-16 max-w-2xl mx-auto text-lg"
-      >
-        A comprehensive set of technologies I use to build scalable and robust applications.
-      </motion.p>
+        <span className="text-gray-400 font-medium text-sm mb-4 block">What I do</span>
+        <h2 className="text-5xl font-bold mb-6 max-w-2xl mx-auto">Skills & Expertise</h2>
+        <p className="text-gray-500 mb-16 max-w-2xl mx-auto text-lg">
+          A comprehensive set of technologies I use to build scalable and robust applications.
+        </p>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
         {skillCategories.map((category, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-[32px] hover:shadow-lg transition-all duration-300 border border-transparent dark:border-white/5"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -5, backgroundColor: "#F3F4F6" }}
+            className="bg-[#F9FAFB] p-8 rounded-[32px] hover:shadow-lg transition-colors duration-300"
           >
-            <div className="text-3xl mb-4 bg-white dark:bg-gray-700 w-14 h-14 flex items-center justify-center rounded-full shadow-sm text-gray-900 dark:text-white">
+            <div className="text-3xl mb-4 bg-white w-14 h-14 flex items-center justify-center rounded-full shadow-sm text-gray-900">
               {category.icon}
             </div>
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{category.title}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+            <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed">
               {category.skills.join(", ")}
             </p>
           </motion.div>
