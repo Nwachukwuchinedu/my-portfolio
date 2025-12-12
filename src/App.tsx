@@ -6,13 +6,10 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
-import { useScrollReveal } from './hooks/useScrollReveal';
 
 function App() {
-  useScrollReveal();
-
   return (
-    <div className="bg-white text-gray-900 antialiased">
+    <div className="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
       <Navbar />
       <Hero />
       <About />
