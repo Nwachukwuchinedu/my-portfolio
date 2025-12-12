@@ -1,84 +1,58 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Database, Globe, Layout, Server, Smartphone, PenTool as Tool } from 'lucide-react';
+import { Database, Globe, Layout, Server, PenTool as Tool } from 'lucide-react';
 
 const Skills = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: <Layout />,
+      icon: <Layout className="w-8 h-8" />,
       skills: ["React.js", "Tailwind CSS", "Vue.js"]
     },
     {
       title: "Backend Development",
-      icon: <Server />,
-      skills: ["Node.js", "Python", "Express.js", "REST APIs", "GraphQL", "tRPC"]
+      icon: <Server className="w-8 h-8" />,
+      skills: ["Node.js", "Python", "Express.js", "REST APIs"]
     },
     {
       title: "Database",
-      icon: <Database />,
-      skills: [ "MongoDB", "MySQL", "Supabase"]
+      icon: <Database className="w-8 h-8" />,
+      skills: ["MongoDB", "MySQL", "Supabase"]
     },
-    // {
-    //   title: "Mobile Development",
-    //   icon: <Smartphone />,
-    //   skills: ["React Native", "Flutter", "iOS", "Android", "Expo", "PWA"]
-    // },
     {
       title: "DevOps & Tools",
-      icon: <Tool />,
+      icon: <Tool className="w-8 h-8" />,
       skills: ["Git", "Docker"]
     },
     {
       title: "Web Technologies",
-      icon: <Globe />,
-      skills: ["HTML5", "CSS3", "SCSS", "JavaScript"]
+      icon: <Globe className="w-8 h-8" />,
+      skills: ["HTML5", "CSS3", "JavaScript"]
     }
   ];
 
   return (
-    <section id="skills" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial={{ y: 50, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Skills & Expertise</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                className="glass p-6 rounded-xl"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="text-purple-400 mr-3">
-                    {category.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+    <section id="skills" className="py-24 px-6 max-w-7xl mx-auto text-center">
+      <span className="text-gray-400 font-medium text-sm mb-4 block">What I do</span>
+      <h2 className="text-5xl font-bold mb-6 max-w-2xl mx-auto reveal-on-scroll">Skills & Expertise</h2>
+      <p className="text-gray-500 mb-16 max-w-2xl mx-auto reveal-on-scroll text-lg">
+        A comprehensive set of technologies I use to build scalable and robust applications.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+        {skillCategories.map((category, index) => (
+          <div
+            key={index}
+            className="bg-[#F9FAFB] p-8 rounded-[32px] hover:-translate-y-1 transition duration-300 reveal-on-scroll"
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
+            <div className="text-3xl mb-4 bg-white w-14 h-14 flex items-center justify-center rounded-full shadow-sm text-gray-900">
+              {category.icon}
+            </div>
+            <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              {category.skills.join(", ")}
+            </p>
           </div>
-        </motion.div>
+        ))}
       </div>
     </section>
   );

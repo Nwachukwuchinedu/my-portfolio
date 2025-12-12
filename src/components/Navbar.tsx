@@ -1,87 +1,72 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, Home, User, Code, Briefcase, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
-    { name: 'Home', href: '#', icon: <Home className="w-4 h-4" /> },
-    { name: 'About', href: '#about', icon: <User className="w-4 h-4" /> },
-    { name: 'Skills', href: '#skills', icon: <Code className="w-4 h-4" /> },
-    { name: 'Experience', href: '#experience', icon: <Briefcase className="w-4 h-4" /> },
-    { name: 'Testimonials', href: '#testimonials', icon: <MessageSquare className="w-4 h-4" /> },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
-      <div className="container mx-auto px-4">
-        <div className={`glass rounded-full px-6 py-3 ${scrolled ? 'shadow-lg' : ''}`}>
-          <div className="flex items-center justify-between">
-            <motion.a 
-              href="#"
-              className="text-2xl font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
-            >
-              Si
-            </motion.a>
+    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 py-4 transition-all duration-300 border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center gap-2 font-bold text-xl tracking-tight cursor-pointer text-gray-900">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-400 to-pink-500 flex items-center justify-center text-white text-xs">S</div>
+          Simeon
+        </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center space-x-1 hover:text-purple-400 transition-colors"
-                  whileHover={{ y: -2 }}
-                >
-                  {item.icon}
-                  <span>{item.name}</span>
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="hover:text-black transition"
             >
-              {isOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+              {item.name}
+            </a>
+          ))}
+        </div>
 
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <motion.div 
-              className="md:hidden mt-4"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center space-x-2 py-3 px-4 hover:bg-white/10 rounded-lg transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.icon}
-                  <span>{item.name}</span>
-                </a>
-              ))}
-            </motion.div>
-          )}
+        <a href="#contact" className="hidden md:block text-sm font-medium hover:opacity-70 text-gray-900">
+          Contact
+        </a>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-900">
+            {isOpen ? <X /> : <Menu />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-6 flex flex-col gap-4 transition-all">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium text-gray-600 hover:text-black"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.name}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="text-sm font-medium text-gray-900"
+            onClick={() => setIsOpen(false)}
+          >
+            Contact
+          </a>
+        </div>
+      )}
     </nav>
   );
 };

@@ -1,31 +1,14 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
+import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 
 const Experience = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const experiences = [
-        {
+    {
       type: "work",
       title: "Backend Developer & Backend Team Lead",
       company: "Diviva Ltd",
       location: "Remote (Lagos, Nigeria)",
       period: "2025",
-      description: `Led the backend team at Diviva Ltd, architecting and 
-      developing robust RESTful APIs for multiple platforms, including a
-       recruitment platform and a real estate solution.
-        Oversaw the implementation of advanced features such as
-         Applicant Tracking Systems (ATS) and an AI-powered chat
-          application for automated user engagement. 
-          Utilized Node.js, Python, and MongoDB to deliver scalable,
-           high-performance backend services.
-            Collaborated cross-functionally to ensure seamless integration
-             and deployment of backend solutions in a remote-first environment.`,
+      description: `Led the backend team at Diviva Ltd, architecting and developing robust RESTful APIs for multiple platforms, including a recruiting platform. Oversaw the implementation of advanced features such as Applicant Tracking Systems (ATS) and an AI-powered chat application.`,
     },
     {
       type: "work",
@@ -33,13 +16,7 @@ const Experience = () => {
       company: "Achilles Drill",
       location: "Lagos State, Nigeria",
       period: "2024 - Present",
-      description: `Collaborated with the Achilles Drill team to develop a
-responsive and user-friendly website using
-Vue.js. Designed and implemented the user interface,
-integrated REST APIs, and implemented
-authentication. Ensured cross-browser compatibility and
-optimized application performance. Built a certifica
-and birthday generator.`,
+      description: `Collaborated with the Achilles Drill team to develop a responsive and user-friendly website using Vue.js. Designed and implemented the user interface, integrated REST APIs, and implemented authentication.`,
     },
     {
       type: "work",
@@ -47,12 +24,7 @@ and birthday generator.`,
       company: "SPE UNIBEN Chapter",
       location: "Edo State, Nigeria",
       period: "2019 - 2021",
-      description: `Developed and maintained the SPE UNIBEN voting
-website using Vue.js, CSS3, JavaScript, Chart.js, Node.js,
-and MongoDB. Implemented responsive design
-principles for cross-device compatibility. Utilized Chart.js
-for data visualization and Node.js with MongoDB for
-backend functionality.`,
+      description: `Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility.`,
     },
     {
       type: "education",
@@ -60,72 +32,43 @@ backend functionality.`,
       company: "University of Benin",
       location: "Edo State, Nigeria",
       period: "2020 - present",
-      description: `Gaining in-depth knowledge of petroleum exploration, reservoir engineering, drilling operations, 
-      and production technology. Engaged in hands-on projects, research, and technical presentations.
-      Participated in Engineering Mathematics competitions, ranking among the top 10 out of 1000+ students. `,
-    },
-    {
-      type: "education",
-      title: "Senior Secondary Certificate Examination",
-      company: "Baptist High School",
-      location: "Edo State, Nigeria",
-      period: "2014 - 2020",
-      description: `Built a strong foundation in mathematics, physics, and chemistry,
-         essential for engineering studies. Participated in competitions. Developed problem-solving skills and leadership abilities 
-         through extracurricular activities.`,
+      description: `Gaining in-depth knowledge of engineering principles. Engaged in hands-on projects, research, and technical presentations. Ranked among top 10 in Engineering Mathematics competitions.`,
     },
   ];
 
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial={{ y: 50, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">
-            Experience & Education
-          </h2>
+    <section id="experience" className="py-24 px-6 max-w-7xl mx-auto">
+      <h2 className="text-5xl font-bold mb-12 text-center reveal-on-scroll">Experience & Education</h2>
 
-          <div className="max-w-4xl mx-auto">
-            {experiences.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-                animate={inView ? { x: 0, opacity: 1 } : {}}
-                transition={{ delay: index * 0.2 }}
-                className="mb-8 relative"
-              >
-                <div className="glass p-6 rounded-xl">
-                  <div className="flex items-center mb-4">
-                    <div className="text-purple-400 mr-3">
-                      {item.type === "work" ? <Briefcase /> : <GraduationCap />}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">{item.title}</h3>
-                      <p className="text-gray-400">{item.company}</p>
-                    </div>
-                  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {experiences.map((item, index) => (
+          <div
+            key={index}
+            className="bg-[#F9FAFB] p-10 rounded-[40px] reveal-on-scroll hover:shadow-lg transition duration-300 border border-transparent hover:border-gray-100"
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-900">
+                {item.type === "work" ? <Briefcase size={20} /> : <GraduationCap size={20} />}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">{item.company}</h3>
+                <p className="text-sm text-gray-400 font-medium">{item.period}</p>
+              </div>
+            </div>
 
-                  <div className="flex items-center text-sm text-gray-400 mb-4">
-                    <div className="flex items-center mr-4">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {item.period}
-                    </div>
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {item.location}
-                    </div>
-                  </div>
+            <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
 
-                  <p className="text-gray-300">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
+            <div className="flex items-center text-sm text-gray-400 mb-6 font-medium">
+              <MapPin className="w-4 h-4 mr-1" />
+              {item.location}
+            </div>
+
+            <p className="text-gray-500 leading-relaxed">
+              {item.description}
+            </p>
           </div>
-        </motion.div>
+        ))}
       </div>
     </section>
   );

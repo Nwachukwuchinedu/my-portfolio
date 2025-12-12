@@ -1,138 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const testimonials = [
   {
     name: "Osarimen Destiny",
     role: "CEO, TechStart",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
+    emoji: "🚀",
+    bg: "bg-blue-100",
     text: "John's expertise in full-stack development helped us launch our product ahead of schedule. His attention to detail and problem-solving skills are exceptional."
   },
   {
     name: "Michael Chen",
     role: "CTO, InnovateCorp",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
+    emoji: "💡",
+    bg: "bg-yellow-100",
     text: "Working with John was a game-changer for our team. His technical knowledge and ability to mentor others significantly improved our development process."
   },
   {
     name: "Emily Rodriguez",
     role: "Product Manager, DesignPro",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+    emoji: "🎨",
+    bg: "bg-pink-100",
     text: "John's ability to translate complex technical concepts into user-friendly solutions is remarkable. He's a true professional who delivers exceptional results."
   }
 ];
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [slide, setSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setSlide((prev) => (prev + 1) % testimonials.length);
     }, 5000);
-
     return () => clearInterval(timer);
   }, []);
 
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => 
-      (prev + 1) % testimonials.length
-    );
-  };
-
   return (
-    <section id="testimonials" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial={{ y: 50, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 0.8 }}
+    <section id="testimonials" className="py-24 px-6 max-w-7xl mx-auto">
+      <h2 className="text-5xl font-bold mb-12 max-w-xl reveal-on-scroll">Client Testimonials</h2>
+
+      <div className="relative w-full overflow-hidden reveal-on-scroll delay-100">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${slide * 100}%)` }}
         >
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Testimonials</h2>
-          
-          <div className="max-w-4xl mx-auto relative">
-            <div className="glass rounded-xl p-8 min-h-[400px]">
-              <div className="absolute top-4 left-8 text-purple-400">
-                <Quote size={40} />
+          {testimonials.map((item, index) => (
+            <div key={index} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div
+                className={`${item.bg} rounded-[40px] h-[400px] flex items-center justify-center text-[8rem] md:text-[10rem]`}
+              >
+                {item.emoji}
               </div>
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="pt-8"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <img
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                      className="w-20 h-20 rounded-full mb-4 object-cover"
-                    />
-                    <div className="flex mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-lg text-gray-300 mb-6 italic">
-                      "{testimonials[currentIndex].text}"
-                    </p>
-                    <h4 className="text-xl font-semibold mb-1">
-                      {testimonials[currentIndex].name}
-                    </h4>
-                    <p className="text-purple-400">
-                      {testimonials[currentIndex].role}
-                    </p>
+              <div>
+                <div className="flex text-yellow-400 text-xl mb-4">★★★★★</div>
+                <h3 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
+                  "{item.text}"
+                </h3>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+                    {item.name.charAt(0)}
                   </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="absolute top-1/2 -translate-y-1/2 left-4">
-                <button
-                  onClick={handlePrevious}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-              </div>
-              
-              <div className="absolute top-1/2 -translate-y-1/2 right-4">
-                <button
-                  onClick={handleNext}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
+                  <div>
+                    <p className="font-bold">{item.name}</p>
+                    <p className="text-sm text-gray-500">{item.role}</p>
+                  </div>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
 
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentIndex ? 'bg-purple-400' : 'bg-white/20'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        <div className="absolute bottom-0 right-0 flex gap-4">
+          <button
+            onClick={() => setSlide(Math.max(slide - 1, 0))}
+            disabled={slide === 0}
+            className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-900"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => setSlide(Math.min(slide + 1, testimonials.length - 1))}
+            disabled={slide === testimonials.length - 1}
+            className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:opacity-80 transition disabled:opacity-30"
+          >
+            →
+          </button>
+        </div>
       </div>
     </section>
   );
