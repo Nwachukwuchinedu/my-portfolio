@@ -4,10 +4,13 @@ import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,10 +21,11 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "Home", href: "#" },
-        { name: "Work", href: "#work" },
-        { name: "About", href: "#about" },
-        { name: "Contact", href: "#contact" },
+        { name: "Home", href: "/" },
+        { name: "Work", href: "/work" },
+        { name: "About", href: "/about" },
+        { name: "Blog", href: "/blog" },
+        { name: "Contact", href: "/contact" },
     ];
 
     return (
@@ -42,20 +46,23 @@ export function Navbar() {
                         : "bg-transparent border-transparent py-2"
                 )}>
                     {/* Logo */}
-                    <a href="#" className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-cyan-400">
+                    <Link href="/" className="text-2xl font-bold font-display tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-cyan-400">
                         Portfolio
-                    </a>
+                    </Link>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover:scale-105"
+                                className={cn(
+                                    "text-sm font-medium transition-colors hover:scale-105",
+                                    pathname === link.href ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+                                )}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
 
@@ -83,14 +90,17 @@ export function Navbar() {
                         className="fixed inset-0 z-[90] bg-background/95 backdrop-blur-xl md:hidden flex flex-col items-center justify-center gap-8"
                     >
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="text-2xl font-bold text-foreground hover:text-cyan-400 transition-colors"
+                                className={cn(
+                                    "text-2xl font-bold font-display hover:text-cyan-400 transition-colors",
+                                    pathname === link.href ? "text-foreground" : "text-muted-foreground"
+                                )}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                     </motion.div>
                 )}
