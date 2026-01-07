@@ -5,7 +5,7 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
     const { setTheme, theme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
 
@@ -14,7 +14,7 @@ export function ThemeToggle() {
     }, [])
 
     if (!mounted) {
-        return null
+        return <div className="w-10 h-10" /> // Placeholder to prevent layout shift
     }
 
     const toggleTheme = () => {
@@ -25,16 +25,16 @@ export function ThemeToggle() {
         <button
             onClick={toggleTheme}
             className={cn(
-                "fixed top-10 right-20 z-50",
-                "flex items-center justify-center",
-                "w-16 h-8 rounded-full",
+                "relative flex items-center justify-center",
+                "w-10 h-10 rounded-full",
                 "bg-white/10 dark:bg-black/20",
                 "backdrop-blur-xl saturate-150",
                 "border border-white/20 dark:border-white/10",
-                "shadow-lg",
+                "shadow-sm",
                 "transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
                 "hover:scale-105 active:scale-95",
-                "group"
+                "group",
+                className
             )}
             aria-label="Toggle theme"
         >

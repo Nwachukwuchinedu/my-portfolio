@@ -56,7 +56,7 @@ export function CaseStudiesSection() {
     ];
 
     return (
-        <section id="work" className="py-20 w-full px-4 scroll-mt-20">
+        <section id="work" className="relative z-10 py-20 w-full px-4 scroll-mt-20">
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
                 Selected Work
             </h2>
