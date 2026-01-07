@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --background: #FFFFFF;
+    --foreground: #0A0A0A;
+    --card: #F5F5F5;
+    --card-foreground: #0A0A0A;
+    --popover: #FFFFFF;
+    --popover-foreground: #0A0A0A;
+    --primary: #0A0A0A;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F5F5F5;
+    --secondary-foreground: #525252;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #0891B2;
+    --accent-foreground: #FFFFFF;
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFFFF;
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: #0891B2;
+    --radius: 0.5rem;
+
+    /* Custom Colors */
+    --color-violet: #7C3AED;
+    --color-cyan: #0891B2;
+
+    /* Gradients */
+    --hero-gradient: linear-gradient(135deg, #7C3AED 0%, #0891B2 100%);
+    --glass-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+  }
+
+  .dark {
+    /* Dark Mode */
+    --background: #050505;
+    --foreground: #E8E8E8;
+    --card: #0A0A0A;
+    --card-foreground: #E8E8E8;
+    --popover: #050505;
+    --popover-foreground: #E8E8E8;
+    --primary: #E8E8E8;
+    --primary-foreground: #0A0A0A;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #a3a3a3;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #00E5FF;
+    --accent-foreground: #000000;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #fef2f2;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #00E5FF;
+
+    /* Custom Colors */
+    --color-violet: #7C3AED;
+    --color-cyan: #00E5FF;
+
+    /* Gradients */
+    --hero-gradient: linear-gradient(135deg, #7C3AED 0%, #00E5FF 100%);
+    --glass-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    /* Adjusted opacity for dark mode as per instruction */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
