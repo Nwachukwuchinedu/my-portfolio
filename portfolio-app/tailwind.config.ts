@@ -33,7 +33,8 @@ const config: Config = {
                 cyan: "var(--color-cyan)",
             },
             fontFamily: {
-                sans: ["var(--font-inter)", "sans-serif"],
+                sans: ["var(--font-inter)", "sans-serif"],    // Inter for body
+                display: ["Satoshi", "sans-serif"],           // Satoshi for headers
                 mono: ["var(--font-geist-mono)", "monospace"],
             },
             backgroundImage: {

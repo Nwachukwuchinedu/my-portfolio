@@ -13,7 +13,7 @@ export function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-4xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 pb-2"
+                    className="text-4xl md:text-7xl font-bold font-display tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 pb-2"
                 >
                     Engineering High-Performance <br />
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-cyan-400">

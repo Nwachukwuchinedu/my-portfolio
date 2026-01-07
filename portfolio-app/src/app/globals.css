@@ -1,3 +1,4 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -64,7 +65,6 @@
     /* Gradients */
     --hero-gradient: linear-gradient(135deg, #7C3AED 0%, #00E5FF 100%);
     --glass-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-    /* Adjusted opacity for dark mode as per instruction */
   }
 }
 
@@ -78,6 +78,17 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    /* Default to Inter */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    /* Default to Satoshi */
   }
 }
