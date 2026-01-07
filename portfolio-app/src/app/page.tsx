@@ -3,14 +3,30 @@ import { CaseStudiesSection } from "@/components/sections/case-studies";
 import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
 import { UnevenGridBackground } from "@/components/ui/background-grid";
+import { BlogPreviewSection } from "@/components/sections/blog-preview";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-background overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
       <UnevenGridBackground />
       <HeroSection />
-      <CaseStudiesSection />
+
+      {/* Case Studies Preview with "View All" link */}
+      <div className="relative w-full">
+        <CaseStudiesSection />
+        <div className="absolute bottom-10 left-0 w-full flex justify-center z-20 pointer-events-none">
+          {/* We want the button to be clickable, so pointer-events-auto */}
+          <Link href="/work" className="pointer-events-auto px-6 py-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-md flex items-center gap-2 hover:bg-white/10 transition-colors text-sm font-medium">
+            View Full Portfolio <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+        {/* Add some padding bottom to section in general? CaseStudiesSection has py-20, so it's fine. */}
+      </div>
+
       <AboutSection />
+      <BlogPreviewSection />
       <ContactSection />
 
       {/* Simple Footer */}

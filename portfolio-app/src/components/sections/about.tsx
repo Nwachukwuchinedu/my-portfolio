@@ -11,16 +11,13 @@ export function AboutSection() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl font-bold mb-6">Master Craftsman</h2>
+                    <h2 className="text-3xl font-bold mb-6 font-display">Master Craftsman</h2>
                     <div className="prose dark:prose-invert">
                         <p className="text-lg leading-relaxed text-muted-foreground">
-                            I build software systems that scale.
+                            I build software systems that scale. With over 8 years of experience, I specialize in architecting resilient full-stack applications where performance and developer velocity are paramount.
                         </p>
                         <p className="mt-4 leading-relaxed text-muted-foreground">
-                            Over the past 8 years, I&apos;ve specialized in architecting full-stack applications for high-growth companies where performance, reliability, and developer velocity are non-negotiable. My work spans infrastructure optimization, real-time systems, and developer tooling—areas where precision engineering directly impacts business outcomes.
-                        </p>
-                        <p className="mt-4 leading-relaxed text-muted-foreground">
-                            I approach software development as a craft. Every system I design balances technical rigor with pragmatic delivery. Whether optimizing database queries to handle millions of transactions, building developer platforms that accelerate team velocity, or architecting APIs that serve as the foundation for product growth, I prioritize solutions that compound value over time.
+                            My philosophy is simple: Technical rigor meets pragmatic delivery. Every line of code should serve a purpose and compound value over time.
                         </p>
                     </div>
 
@@ -38,28 +35,122 @@ export function AboutSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative h-[500px] w-full bg-gradient-to-br from-violet-500/10 to-cyan-500/10 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center p-8"
+                    className="relative h-[400px] w-full bg-gradient-to-br from-violet-500/10 to-cyan-500/10 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center p-8"
                 >
-                    {/* Abstract visual representation of systems */}
                     <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px_32px]" />
-                    <div className="relative z-10 p-6 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 max-w-sm">
+                    <div className="relative z-10 p-6 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
                         <div className="flex space-x-2 mb-4">
                             <div className="w-3 h-3 rounded-full bg-red-500/50" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
                             <div className="w-3 h-3 rounded-full bg-green-500/50" />
                         </div>
-                        <code className="text-sm font-mono text-cyan-300">
-                            <span className="text-violet-400">func</span> <span className="text-yellow-300">ScaleSystem</span>(load <span className="text-cyan-300">Load</span>) <span className="text-violet-400">Result</span> {"{"}<br />
-                            &nbsp;&nbsp;<span className="text-muted-foreground">// optimizing critical path</span><br />
-                            &nbsp;&nbsp;<span className="text-violet-400">if</span> load.IsHigh() {"{"}<br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;ShardDatabase()<br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;EnableFuzzyCaching()<br />
-                            &nbsp;&nbsp;{"}"}<br />
-                            {"}"}
-                        </code>
+                        <div className="text-sm font-mono text-cyan-300 min-h-[120px]">
+                            <TypewriterCode />
+                        </div>
                     </div>
                 </motion.div>
             </div>
         </section>
     )
+}
+
+function TypewriterCode() {
+    const codeString = `async function scaleSystem(load: Load): Promise<Result> {
+  // optimizing critical path
+  if (load.isHigh()) {
+    await shardDatabase();
+    await enableFuzzyCaching();
+  }
+  return { status: "optimized" };
+}`;
+
+    // Simple tokenizer for syntax highlighting
+    const getHighlightClass = (word: string) => {
+        if (["async", "function", "if", "return", "await"].includes(word)) return "text-violet-400";
+        if (["Load", "Promise", "Result"].includes(word)) return "text-yellow-300";
+        if (["scaleSystem", "shardDatabase", "enableFuzzyCaching", "isHigh"].includes(word)) return "text-cyan-300";
+        if (word.startsWith("//")) return "text-muted-foreground"; // content handles comments logic better below
+        if (word.startsWith('"')) return "text-green-400";
+        return "text-white";
+    };
+
+    // We split by segments to preserve colors, but animate chars
+    // Actually, easiest way for React + Framer "Typewriter" with colors:
+    // Render the full colored tree, but mask it with a revealing motion div?
+    // OR animate opacity of each character.
+    // Let's do char-by-char.
+
+    // Custom splitting logic to handle highlighted segments
+    // This is a simplified "manual" highlight approach for clarity/performance
+    const tokens = [
+        { text: "async", color: "text-violet-400" },
+        { text: " ", color: "text-white" },
+        { text: "function", color: "text-violet-400" },
+        { text: " ", color: "text-white" },
+        { text: "scaleSystem", color: "text-cyan-300" },
+        { text: "(", color: "text-white" },
+        { text: "load", color: "text-foreground" },
+        { text: ": ", color: "text-white" },
+        { text: "Load", color: "text-yellow-300" },
+        { text: ")", color: "text-white" },
+        { text: ": ", color: "text-white" },
+        { text: "Promise", color: "text-yellow-300" },
+        { text: "<", color: "text-white" },
+        { text: "Result", color: "text-yellow-300" },
+        { text: "> ", color: "text-white" },
+        { text: "{", color: "text-white" },
+        { text: "\n  ", color: "text-white" },
+        { text: "// optimizing critical path", color: "text-muted-foreground italic" },
+        { text: "\n  ", color: "text-white" },
+        { text: "if", color: "text-violet-400" },
+        { text: " ", color: "text-white" },
+        { text: "(", color: "text-white" },
+        { text: "load", color: "text-foreground" },
+        { text: ".", color: "text-white" },
+        { text: "isHigh", color: "text-cyan-300" },
+        { text: "()", color: "text-white" },
+        { text: ") ", color: "text-white" },
+        { text: "{", color: "text-white" },
+        { text: "\n    ", color: "text-white" },
+        { text: "await", color: "text-violet-400" },
+        { text: " ", color: "text-white" },
+        { text: "shardDatabase", color: "text-cyan-300" },
+        { text: "();", color: "text-white" },
+        { text: "\n    ", color: "text-white" },
+        { text: "await", color: "text-violet-400" },
+        { text: " ", color: "text-white" },
+        { text: "enableFuzzyCaching", color: "text-cyan-300" },
+        { text: "();", color: "text-white" },
+        { text: "\n  ", color: "text-white" },
+        { text: "}", color: "text-white" },
+        { text: "\n}", color: "text-white" },
+    ];
+
+    /* 
+       To animate char by char, we flatten tokens into an array of characters with metadata 
+    */
+    const chars = tokens.flatMap(token =>
+        token.text.split("").map(char => ({ char, color: token.color }))
+    );
+
+    return (
+        <div className="font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap">
+            {chars.map((item, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.01, delay: i * 0.03 }} // Fast typing speed
+                    className={item.color}
+                >
+                    {item.char}
+                </motion.span>
+            ))}
+            <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-2 h-4 bg-cyan-400 ml-1 align-middle"
+            />
+        </div>
+    );
 }
