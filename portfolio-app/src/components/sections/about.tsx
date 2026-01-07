@@ -60,4 +60,6 @@ export function AboutSection() {
                     </div>
                 </motion.div>
             </div>
-      
+        </section>
+    )
+}

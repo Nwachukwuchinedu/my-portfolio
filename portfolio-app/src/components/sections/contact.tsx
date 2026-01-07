@@ -4,8 +4,8 @@ import { Mail, Github, Linkedin, ArrowRight } from "lucide-react";
 
 export function ContactSection() {
     return (
-        <section className="py-20 w-full px-4 relative overflow-hidden">
-            {/* Background Gradient */}
+        <section id="contact" className="py-20 w-full px-4 relative overflow-hidden scroll-mt-20">
+            {/* Background Gradient included in parent or here */}
             <div className="absolute inset-0 bg-gradient-to-t from-violet-900/10 to-transparent pointer-events-none" />
 
             <div className="max-w-3xl mx-auto text-center relative z-10">
