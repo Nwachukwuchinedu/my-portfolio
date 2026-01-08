@@ -44,6 +44,8 @@ export default function RootLayout({
           >
             <Navbar />
             {children}
+            {/* Bottom Blur Mask */}
+            <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-[50] pointer-events-none backdrop-blur-[2px] opacity-80" />
           </ThemeProvider>
         </SmoothScroll>
       </body>

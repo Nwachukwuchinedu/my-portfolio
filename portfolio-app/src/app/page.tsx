@@ -6,6 +6,7 @@ import { UnevenGridBackground } from "@/components/ui/background-grid";
 import { BlogPreviewSection } from "@/components/sections/blog-preview";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Case Studies Preview with "View All" link */}
-      <div className="relative w-full">
+      <ScrollReveal className="relative w-full">
         <CaseStudiesSection />
         <div className="absolute bottom-10 left-0 w-full flex justify-center z-20 pointer-events-none">
           {/* We want the button to be clickable, so pointer-events-auto */}
@@ -22,12 +23,19 @@ export default function Home() {
             View Full Portfolio <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-        {/* Add some padding bottom to section in general? CaseStudiesSection has py-20, so it's fine. */}
-      </div>
+      </ScrollReveal>
 
-      <AboutSection />
-      <BlogPreviewSection />
-      <ContactSection />
+      <ScrollReveal className="w-full">
+        <AboutSection />
+      </ScrollReveal>
+
+      <ScrollReveal className="w-full">
+        <BlogPreviewSection />
+      </ScrollReveal>
+
+      <ScrollReveal className="w-full">
+        <ContactSection />
+      </ScrollReveal>
 
       {/* Simple Footer */}
       <footer className="w-full py-8 border-t border-white/10 text-center text-sm text-muted-foreground relative z-10 bg-background/50 backdrop-blur-md">
