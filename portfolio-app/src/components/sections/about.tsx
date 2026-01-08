@@ -38,7 +38,8 @@ export function AboutSection() {
                     className="relative h-[400px] w-full bg-gradient-to-br from-violet-500/10 to-cyan-500/10 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center p-8"
                 >
                     <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px_32px]" />
-                    <div className="relative z-10 p-6 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
+                    {/* Dark background forced for code block */}
+                    <div className="relative z-10 p-6 bg-zinc-950/90 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
                         <div className="flex space-x-2 mb-4">
                             <div className="w-3 h-3 rounded-full bg-red-500/50" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
@@ -89,7 +90,7 @@ function TypewriterCode() {
         { text: " ", color: "text-white" },
         { text: "scaleSystem", color: "text-cyan-300" },
         { text: "(", color: "text-white" },
-        { text: "load", color: "text-foreground" },
+        { text: "load", color: "text-zinc-100" }, // Fixed color
         { text: ": ", color: "text-white" },
         { text: "Load", color: "text-yellow-300" },
         { text: ")", color: "text-white" },
@@ -100,12 +101,12 @@ function TypewriterCode() {
         { text: "> ", color: "text-white" },
         { text: "{", color: "text-white" },
         { text: "\n  ", color: "text-white" },
-        { text: "// optimizing critical path", color: "text-muted-foreground italic" },
+        { text: "// optimizing critical path", color: "text-zinc-500 italic" }, // Fixed comment color for visibility
         { text: "\n  ", color: "text-white" },
         { text: "if", color: "text-violet-400" },
         { text: " ", color: "text-white" },
         { text: "(", color: "text-white" },
-        { text: "load", color: "text-foreground" },
+        { text: "load", color: "text-zinc-100" }, // Fixed color
         { text: ".", color: "text-white" },
         { text: "isHigh", color: "text-cyan-300" },
         { text: "()", color: "text-white" },
