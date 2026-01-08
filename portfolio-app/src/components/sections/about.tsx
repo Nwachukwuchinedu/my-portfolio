@@ -39,7 +39,7 @@ export function AboutSection() {
                 >
                     <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px_32px]" />
                     {/* Dark background forced for code block */}
-                    <div className="relative z-10 p-6 bg-zinc-950/90 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
+                    <div className="relative z-10 p-6 bg-slate-900/90 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
                         <div className="flex space-x-2 mb-4">
                             <div className="w-3 h-3 rounded-full bg-red-500/50" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
@@ -67,64 +67,60 @@ function TypewriterCode() {
 
     // Simple tokenizer for syntax highlighting
     const getHighlightClass = (word: string) => {
-        if (["async", "function", "if", "return", "await"].includes(word)) return "text-violet-400";
-        if (["Load", "Promise", "Result"].includes(word)) return "text-yellow-300";
-        if (["scaleSystem", "shardDatabase", "enableFuzzyCaching", "isHigh"].includes(word)) return "text-cyan-300";
-        if (word.startsWith("//")) return "text-muted-foreground"; // content handles comments logic better below
-        if (word.startsWith('"')) return "text-green-400";
-        return "text-white";
+        // ... (unused logically but kept for consistency if needed, we define manual tokens below)
+        return "text-gray-300";
     };
 
-    // We split by segments to preserve colors, but animate chars
-    // Actually, easiest way for React + Framer "Typewriter" with colors:
-    // Render the full colored tree, but mask it with a revealing motion div?
-    // OR animate opacity of each character.
-    // Let's do char-by-char.
+    // Manual High-Contrast Tokens
+    // Palette:
+    // Keywords: text-pink-500
+    // Functions: text-blue-400
+    // Types: text-emerald-400
+    // Params/Vars: text-orange-300
+    // Punctuation: text-gray-300
 
-    // Custom splitting logic to handle highlighted segments
-    // This is a simplified "manual" highlight approach for clarity/performance
     const tokens = [
-        { text: "async", color: "text-violet-400" },
-        { text: " ", color: "text-white" },
-        { text: "function", color: "text-violet-400" },
-        { text: " ", color: "text-white" },
-        { text: "scaleSystem", color: "text-cyan-300" },
-        { text: "(", color: "text-white" },
-        { text: "load", color: "text-zinc-100" }, // Fixed color
-        { text: ": ", color: "text-white" },
-        { text: "Load", color: "text-yellow-300" },
-        { text: ")", color: "text-white" },
-        { text: ": ", color: "text-white" },
-        { text: "Promise", color: "text-yellow-300" },
-        { text: "<", color: "text-white" },
-        { text: "Result", color: "text-yellow-300" },
-        { text: "> ", color: "text-white" },
-        { text: "{", color: "text-white" },
-        { text: "\n  ", color: "text-white" },
-        { text: "// optimizing critical path", color: "text-zinc-500 italic" }, // Fixed comment color for visibility
-        { text: "\n  ", color: "text-white" },
-        { text: "if", color: "text-violet-400" },
-        { text: " ", color: "text-white" },
-        { text: "(", color: "text-white" },
-        { text: "load", color: "text-zinc-100" }, // Fixed color
-        { text: ".", color: "text-white" },
-        { text: "isHigh", color: "text-cyan-300" },
-        { text: "()", color: "text-white" },
-        { text: ") ", color: "text-white" },
-        { text: "{", color: "text-white" },
-        { text: "\n    ", color: "text-white" },
-        { text: "await", color: "text-violet-400" },
-        { text: " ", color: "text-white" },
-        { text: "shardDatabase", color: "text-cyan-300" },
-        { text: "();", color: "text-white" },
-        { text: "\n    ", color: "text-white" },
-        { text: "await", color: "text-violet-400" },
-        { text: " ", color: "text-white" },
-        { text: "enableFuzzyCaching", color: "text-cyan-300" },
-        { text: "();", color: "text-white" },
-        { text: "\n  ", color: "text-white" },
-        { text: "}", color: "text-white" },
-        { text: "\n}", color: "text-white" },
+        { text: "async", color: "text-pink-500" },
+        { text: " ", color: "text-gray-300" },
+        { text: "function", color: "text-pink-500" },
+        { text: " ", color: "text-gray-300" },
+        { text: "scaleSystem", color: "text-blue-400" },
+        { text: "(", color: "text-gray-300" },
+        { text: "load", color: "text-orange-300" }, // Orange for param
+        { text: ": ", color: "text-gray-300" },
+        { text: "Load", color: "text-emerald-400" }, // Emerald for Type
+        { text: ")", color: "text-gray-300" },
+        { text: ": ", color: "text-gray-300" },
+        { text: "Promise", color: "text-emerald-400" },
+        { text: "<", color: "text-gray-300" },
+        { text: "Result", color: "text-emerald-400" },
+        { text: "> ", color: "text-gray-300" },
+        { text: "{", color: "text-gray-300" },
+        { text: "\n  ", color: "text-gray-300" },
+        { text: "// optimizing critical path", color: "text-gray-500 italic" },
+        { text: "\n  ", color: "text-gray-300" },
+        { text: "if", color: "text-pink-500" },
+        { text: " ", color: "text-gray-300" },
+        { text: "(", color: "text-gray-300" },
+        { text: "load", color: "text-orange-300" },
+        { text: ".", color: "text-gray-300" },
+        { text: "isHigh", color: "text-blue-400" },
+        { text: "()", color: "text-gray-300" },
+        { text: ") ", color: "text-gray-300" },
+        { text: "{", color: "text-gray-300" },
+        { text: "\n    ", color: "text-gray-300" },
+        { text: "await", color: "text-pink-500" },
+        { text: " ", color: "text-gray-300" },
+        { text: "shardDatabase", color: "text-blue-400" },
+        { text: "();", color: "text-gray-300" },
+        { text: "\n    ", color: "text-gray-300" },
+        { text: "await", color: "text-pink-500" },
+        { text: " ", color: "text-gray-300" },
+        { text: "enableFuzzyCaching", color: "text-blue-400" },
+        { text: "();", color: "text-gray-300" },
+        { text: "\n  ", color: "text-gray-300" },
+        { text: "}", color: "text-gray-300" },
+        { text: "\n}", color: "text-gray-300" },
     ];
 
     /* 
@@ -150,7 +146,7 @@ function TypewriterCode() {
             <motion.span
                 animate={{ opacity: [0, 1, 0] }}
                 transition={{ repeat: Infinity, duration: 0.8 }}
-                className="inline-block w-2 h-4 bg-cyan-400 ml-1 align-middle"
+                className="inline-block w-2 h-4 bg-pink-500 ml-1 align-middle"
             />
         </div>
     );

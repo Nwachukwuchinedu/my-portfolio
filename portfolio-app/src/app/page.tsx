@@ -19,7 +19,7 @@ export default function Home() {
         <CaseStudiesSection />
         <div className="absolute bottom-10 left-0 w-full flex justify-center z-20 pointer-events-none">
           {/* We want the button to be clickable, so pointer-events-auto */}
-          <Link href="/work" className="pointer-events-auto px-6 py-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-md flex items-center gap-2 hover:bg-white/10 transition-colors text-sm font-medium">
+          <Link href="/work" className="pointer-events-auto px-6 py-2 rounded-full border border-white/10 dark:border-white/10 bg-zinc-900 dark:bg-white/10 text-white backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-all shadow-lg text-sm font-medium">
             View Full Portfolio <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
