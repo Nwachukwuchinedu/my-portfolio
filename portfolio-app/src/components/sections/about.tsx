@@ -37,15 +37,14 @@ export function AboutSection() {
                     viewport={{ once: true }}
                     className="relative h-[400px] w-full bg-gradient-to-br from-violet-500/10 to-cyan-500/10 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center p-8"
                 >
-                    <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px_32px]" />
-                    {/* Dark background forced for code block */}
-                    <div className="relative z-10 p-6 bg-slate-900/90 backdrop-blur-md rounded-xl border border-white/10 max-w-sm w-full shadow-2xl">
+                    {/* Theme-aware background for code block */}
+                    <div className="relative z-10 p-6 bg-white/80 dark:bg-zinc-900/90 backdrop-blur-md rounded-xl border border-black/5 dark:border-white/10 max-w-sm w-full shadow-2xl">
                         <div className="flex space-x-2 mb-4">
                             <div className="w-3 h-3 rounded-full bg-red-500/50" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
                             <div className="w-3 h-3 rounded-full bg-green-500/50" />
                         </div>
-                        <div className="text-sm font-mono text-cyan-300 min-h-[120px]">
+                        <div className="text-sm font-mono min-h-[120px]">
                             <TypewriterCode />
                         </div>
                     </div>
@@ -65,62 +64,52 @@ function TypewriterCode() {
   return { status: "optimized" };
 }`;
 
-    // Simple tokenizer for syntax highlighting
-    const getHighlightClass = (word: string) => {
-        // ... (unused logically but kept for consistency if needed, we define manual tokens below)
-        return "text-gray-300";
-    };
-
-    // Manual High-Contrast Tokens
-    // Palette:
-    // Keywords: text-pink-500
-    // Functions: text-blue-400
-    // Types: text-emerald-400
-    // Params/Vars: text-orange-300
-    // Punctuation: text-gray-300
+    // Manual High-Contrast Tokens with Theme Awareness
+    // Light Mode: Darker/Stronger colors (Pink-600, Blue-600, etc)
+    // Dark Mode: Lighter/Neon colors (Pink-400, Blue-400, etc)
 
     const tokens = [
-        { text: "async", color: "text-pink-500" },
-        { text: " ", color: "text-gray-300" },
-        { text: "function", color: "text-pink-500" },
-        { text: " ", color: "text-gray-300" },
-        { text: "scaleSystem", color: "text-blue-400" },
-        { text: "(", color: "text-gray-300" },
-        { text: "load", color: "text-orange-300" }, // Orange for param
-        { text: ": ", color: "text-gray-300" },
-        { text: "Load", color: "text-emerald-400" }, // Emerald for Type
-        { text: ")", color: "text-gray-300" },
-        { text: ": ", color: "text-gray-300" },
-        { text: "Promise", color: "text-emerald-400" },
-        { text: "<", color: "text-gray-300" },
-        { text: "Result", color: "text-emerald-400" },
-        { text: "> ", color: "text-gray-300" },
-        { text: "{", color: "text-gray-300" },
-        { text: "\n  ", color: "text-gray-300" },
+        { text: "async", color: "text-pink-600 dark:text-pink-400" },
+        { text: " ", color: "text-foreground" },
+        { text: "function", color: "text-pink-600 dark:text-pink-400" },
+        { text: " ", color: "text-foreground" },
+        { text: "scaleSystem", color: "text-blue-600 dark:text-blue-400" },
+        { text: "(", color: "text-gray-600 dark:text-gray-400" },
+        { text: "load", color: "text-orange-600 dark:text-orange-300" },
+        { text: ": ", color: "text-gray-600 dark:text-gray-400" },
+        { text: "Load", color: "text-emerald-600 dark:text-emerald-400" },
+        { text: ")", color: "text-gray-600 dark:text-gray-400" },
+        { text: ": ", color: "text-gray-600 dark:text-gray-400" },
+        { text: "Promise", color: "text-emerald-600 dark:text-emerald-400" },
+        { text: "<", color: "text-gray-600 dark:text-gray-400" },
+        { text: "Result", color: "text-emerald-600 dark:text-emerald-400" },
+        { text: "> ", color: "text-gray-600 dark:text-gray-400" },
+        { text: "{", color: "text-gray-600 dark:text-gray-400" },
+        { text: "\n  ", color: "text-foreground" },
         { text: "// optimizing critical path", color: "text-gray-500 italic" },
-        { text: "\n  ", color: "text-gray-300" },
-        { text: "if", color: "text-pink-500" },
-        { text: " ", color: "text-gray-300" },
-        { text: "(", color: "text-gray-300" },
-        { text: "load", color: "text-orange-300" },
-        { text: ".", color: "text-gray-300" },
-        { text: "isHigh", color: "text-blue-400" },
-        { text: "()", color: "text-gray-300" },
-        { text: ") ", color: "text-gray-300" },
-        { text: "{", color: "text-gray-300" },
-        { text: "\n    ", color: "text-gray-300" },
-        { text: "await", color: "text-pink-500" },
-        { text: " ", color: "text-gray-300" },
-        { text: "shardDatabase", color: "text-blue-400" },
-        { text: "();", color: "text-gray-300" },
-        { text: "\n    ", color: "text-gray-300" },
-        { text: "await", color: "text-pink-500" },
-        { text: " ", color: "text-gray-300" },
-        { text: "enableFuzzyCaching", color: "text-blue-400" },
-        { text: "();", color: "text-gray-300" },
-        { text: "\n  ", color: "text-gray-300" },
-        { text: "}", color: "text-gray-300" },
-        { text: "\n}", color: "text-gray-300" },
+        { text: "\n  ", color: "text-foreground" },
+        { text: "if", color: "text-pink-600 dark:text-pink-400" },
+        { text: " ", color: "text-foreground" },
+        { text: "(", color: "text-gray-600 dark:text-gray-400" },
+        { text: "load", color: "text-orange-600 dark:text-orange-300" },
+        { text: ".", color: "text-gray-600 dark:text-gray-400" },
+        { text: "isHigh", color: "text-blue-600 dark:text-blue-400" },
+        { text: "()", color: "text-gray-600 dark:text-gray-400" },
+        { text: ") ", color: "text-gray-600 dark:text-gray-400" },
+        { text: "{", color: "text-gray-600 dark:text-gray-400" },
+        { text: "\n    ", color: "text-foreground" },
+        { text: "await", color: "text-pink-600 dark:text-pink-400" },
+        { text: " ", color: "text-foreground" },
+        { text: "shardDatabase", color: "text-blue-600 dark:text-blue-400" },
+        { text: "();", color: "text-gray-600 dark:text-gray-400" },
+        { text: "\n    ", color: "text-foreground" },
+        { text: "await", color: "text-pink-600 dark:text-pink-400" },
+        { text: " ", color: "text-foreground" },
+        { text: "enableFuzzyCaching", color: "text-blue-600 dark:text-blue-400" },
+        { text: "();", color: "text-gray-600 dark:text-gray-400" },
+        { text: "\n  ", color: "text-foreground" },
+        { text: "}", color: "text-gray-600 dark:text-gray-400" },
+        { text: "\n}", color: "text-gray-600 dark:text-gray-400" },
     ];
 
     /* 
