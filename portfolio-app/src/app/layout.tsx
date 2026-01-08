@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/ui/navbar";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { BottomBlur } from "@/components/ui/bottom-blur";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,8 +45,7 @@ export default function RootLayout({
           >
             <Navbar />
             {children}
-            {/* Bottom Blur Mask */}
-            <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-[50] pointer-events-none backdrop-blur-[2px] opacity-80" />
+            <BottomBlur />
           </ThemeProvider>
         </SmoothScroll>
       </body>
