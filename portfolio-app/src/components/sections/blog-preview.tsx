@@ -44,7 +44,7 @@ export function BlogPreviewSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer"
+                            className="p-6 rounded-xl border border-border/10 bg-white dark:bg-white/5 shadow-lg dark:shadow-none hover:shadow-xl dark:hover:bg-white/10 hover:-translate-y-1 transition-all group cursor-pointer"
                         >
                             <div className="flex justify-between items-start mb-4">
                                 <span className="text-xs font-mono text-muted-foreground">{post.date}</span>
