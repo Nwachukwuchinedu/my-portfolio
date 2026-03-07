@@ -19,8 +19,9 @@ import { fetchWithBackoff } from '@/lib/utils';
 import { Octokit } from 'octokit';
 
 // --- API CONFIGURATION ---
-const apiKey = ""; // Environment provides this at runtime
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+const groqApiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY || "";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 export default function App() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -35,14 +36,14 @@ export default function App() {
 
   // AI Chatbot State
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([{ role: 'model', text: "Hi! I'm the AI assistant for SYS.DEV. Ask me anything about their experience, tech stack, or availability!" }]);
+  const [chatMessages, setChatMessages] = useState([{ role: 'assistant', text: "Hi! I'm the AI assistant for SYS.DEV. Ask me anything about their experience, tech stack, or availability!" }]);
   const [chatInput, setChatInput] = useState("");
   const [isChatLoading, setIsChatLoading] = useState(false);
   const chatScrollRef = useRef<HTMLDivElement>(null);
 
   // AI Salary Negotiator State
   const [negotiatorInput, setNegotiatorInput] = useState("");
-  const [negotiationChat, setNegotiationChat] = useState([{ role: 'model', text: "I'm always open to discussing mutually beneficial opportunities. What compensation range do you have in mind for this role?" }]);
+  const [negotiationChat, setNegotiationChat] = useState([{ role: 'assistant', text: "I'm always open to discussing mutually beneficial opportunities. What compensation range do you have in mind for this role?" }]);
   const [isNegotiating, setIsNegotiating] = useState(false);
   const negotiatorScrollRef = useRef<HTMLDivElement>(null);
 
@@ -70,10 +71,19 @@ export default function App() {
     // Observe all the new animation classes
     document.querySelectorAll('.reveal-on-scroll, .reveal-blur, .reveal-scale').forEach((el) => observer.observe(el));
 
-    // Fetch and Summarize GitHub Activity
+
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, [isMenuOpen]);
+
+  // Fetch and Summarize GitHub Activity on Mount
+  useEffect(() => {
     const generateGithubSummary = async () => {
       try {
-        const apiRes = await fetch('/api/github?username=Nwachukwuchinedu');
+        const apiRes = await fetch(`/api/github?username=Nwachukwuchinedu&t=${Date.now()}`, { cache: 'no-store' });
         if (!apiRes.ok) throw new Error("Backend API Error");
 
         const data = await apiRes.json();
@@ -81,18 +91,37 @@ export default function App() {
 
         const commitMessages = data.commitMessages || "";
 
-        const payload = {
-          contents: [{ parts: [{ text: `You are summarizing a developer's recent git commits for their portfolio. Commits: "${commitMessages}". Write exactly one short, impressive, punchy sentence explaining what they have been building or fixing lately. Don't use quotes.` }] }],
-        };
+        if (groqApiKey) {
+          const payload = {
+            model: GROQ_MODEL,
+            messages: [
+              {
+                role: "system",
+                content: "You are summarizing a developer's recent git commits for their portfolio. Write exactly one short, impressive, punchy sentence explaining what they have been building or fixing lately. Don't use quotes."
+              },
+              {
+                role: "user",
+                content: `Here are the recent commits: "${commitMessages}"`
+              }
+            ],
+            temperature: 0.7,
+            max_completion_tokens: 100
+          };
 
-        const aiRes = await fetchWithBackoff(GEMINI_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+          const aiRes = await fetchWithBackoff(GROQ_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${groqApiKey}`
+            },
+            body: JSON.stringify(payload)
+          });
 
-        const summary = aiRes.candidates?.[0]?.content?.parts?.[0]?.text || "Recently pushed updates optimizing core application performance and streamlining CI/CD pipelines.";
-        setGithubSummary(summary);
+          const summary = aiRes.choices?.[0]?.message?.content || "Recently pushed updates optimizing core application performance and streamlining CI/CD pipelines.";
+          setGithubSummary(summary);
+        } else {
+          setGithubSummary("Actively pushing code: optimizing system architecture, refining UI components, and squashing bugs in production.");
+        }
       } catch {
         setGithubSummary("Consistently shipping production-ready code, optimizing architecture, and resolving edge-case bugs.");
       } finally {
@@ -100,17 +129,8 @@ export default function App() {
       }
     };
 
-    if (apiKey) generateGithubSummary();
-    else {
-      setGithubSummary("Actively pushing code: optimizing system architecture, refining UI components, and squashing bugs in production.");
-      setIsGithubLoading(false);
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
-  }, [isMenuOpen]);
+    generateGithubSummary();
+  }, []);
 
   // Focus FAQ AI input when expanded
   useEffect(() => {
@@ -142,22 +162,32 @@ export default function App() {
 
     try {
       const payload = {
-        systemInstruction: {
-          parts: [{ text: "You are the AI portfolio assistant for SYS.DEV, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences." }]
-        },
-        contents: [
-          ...chatMessages.map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text }] })),
-          { role: 'user', parts: [{ text: userMessage }] }
-        ]
+        model: GROQ_MODEL,
+        messages: [
+          {
+            role: "system",
+            content: "You are the AI portfolio assistant for SYS.DEV, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences."
+          },
+          ...chatMessages.map(m => ({
+            role: m.role as 'assistant' | 'user',
+            content: m.text
+          })),
+          { role: 'user', content: userMessage }
+        ],
+        temperature: 0.7,
+        max_completion_tokens: 200
       };
 
-      const aiRes = await fetchWithBackoff(GEMINI_URL, {
+      const aiRes = await fetchWithBackoff(GROQ_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${groqApiKey}`
+        },
         body: JSON.stringify(payload)
       });
 
-      const responseText = aiRes.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting to my knowledge base right now. Please email me directly!";
+      const responseText = aiRes.choices?.[0]?.message?.content || "I'm having trouble connecting to my knowledge base right now. Please email me directly!";
       setChatMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch {
       setChatMessages(prev => [...prev, { role: 'model', text: "Error connecting to AI. Please try again later or reach out via email." }]);
@@ -195,22 +225,32 @@ export default function App() {
 
     try {
       const payload = {
-        systemInstruction: {
-          parts: [{ text: "You are the AI proxy for SYS.DEV, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely." }]
-        },
-        contents: [
-          ...negotiationChat.map(m => ({ role: m.role === 'model' ? 'model' : 'user', parts: [{ text: m.text }] })),
-          { role: 'user', parts: [{ text: userOffer }] }
-        ]
+        model: GROQ_MODEL,
+        messages: [
+          {
+            role: "system",
+            content: "You are the AI proxy for SYS.DEV, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely."
+          },
+          ...negotiationChat.map(m => ({
+            role: m.role as 'assistant' | 'user',
+            content: m.text
+          })),
+          { role: 'user', content: userOffer }
+        ],
+        temperature: 0.8,
+        max_completion_tokens: 200
       };
 
-      const aiRes = await fetchWithBackoff(GEMINI_URL, {
+      const aiRes = await fetchWithBackoff(GROQ_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${groqApiKey}`
+        },
         body: JSON.stringify(payload)
       });
 
-      const responseText = aiRes.candidates?.[0]?.content?.parts?.[0]?.text || "Let's move this to a live call. I'd love to discuss how I can bring massive value to your team.";
+      const responseText = aiRes.choices?.[0]?.message?.content || "Let's move this to a live call. I'd love to discuss how I can bring massive value to your team.";
       setNegotiationChat(prev => [...prev, { role: 'model', text: responseText }]);
     } catch {
       setNegotiationChat(prev => [...prev, { role: 'model', text: "Error connecting to my negotiation logic. Let's just say I know my worth! Email me to chat for real." }]);
@@ -265,6 +305,8 @@ export default function App() {
         .animate-reveal { opacity: 1 !important; transform: translateY(0) scale(1) !important; filter: blur(0) !important; }
 
         .project-card:hover, .article-card:hover { cursor: none !important; }
+
+        .native-cursor-area, .native-cursor-area * { cursor: auto !important; }
 
         /* Marquee Animation */
         .marquee { display: flex; overflow: hidden; user-select: none; gap: 1rem; }

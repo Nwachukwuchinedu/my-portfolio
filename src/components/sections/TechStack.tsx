@@ -1,5 +1,7 @@
 import { Activity, LineChart, Github, Server, Code2, Layers, GitBranch } from 'lucide-react';
-import { GitHubCalendar } from 'react-github-calendar';
+import dynamic from 'next/dynamic';
+
+const GitHubCalendar = dynamic(() => import('react-github-calendar').then((mod) => mod.GitHubCalendar), { ssr: false });
 
 export default function TechStack({ githubSummary, isGithubLoading, topLanguages = [] }: any) {
     return (
@@ -23,7 +25,7 @@ export default function TechStack({ githubSummary, isGithubLoading, topLanguages
                     </div>
                 </div>
 
-                <div className="glass-card rounded-3xl p-6 sm:p-8 flex flex-col group hover:bg-[#18181B] transition-colors reveal-blur md:col-span-3 lg:col-span-1 border border-[#27272A] hover:border-[#D4FF00]/50 relative overflow-hidden" style={{ transitionDelay: '150ms' }}>
+                <div className="glass-card rounded-3xl p-6 sm:p-8 flex flex-col group hover:bg-[#18181B] transition-colors reveal-blur md:col-span-3 lg:col-span-1 border border-[#27272A] hover:border-[#D4FF00]/50 relative overflow-hidden native-cursor-area" style={{ transitionDelay: '150ms' }} data-hide-cursor="true">
                     <div className="absolute top-0 right-0 p-6 opacity-30 group-hover:opacity-100 transition-opacity"><LineChart size={20} className="text-[#D4FF00]" /></div>
                     <div className="w-14 h-14 rounded-2xl bg-[#27272A] flex items-center justify-center text-white mb-6 border border-[#3F3F46] group-hover:bg-[#D4FF00] group-hover:text-black transition-colors"><Github size={24} /></div>
                     <h3 className="text-xl font-bold font-display mb-2 text-white">Live Activity</h3>
