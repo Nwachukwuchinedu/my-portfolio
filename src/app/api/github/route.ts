@@ -6,30 +6,41 @@ const getOctokit = () => {
 };
 
 async function fetchGitHubData(username: string) {
+    if (!process.env.GITHUB_TOKEN) {
+        console.error("GITHUB_TOKEN is not defined in environment variables");
+        return NextResponse.json({ error: 'GitHub authentication token missing' }, { status: 500 });
+    }
+
     const octokit = getOctokit();
     try {
-        // 1. Fetch Commit Events for the AI Summary logic
-        const eventsRes = await octokit.request('GET /users/{username}/events/public', {
+        // Verify authentication
+        const { data: viewer } = await octokit.request('GET /user');
+        console.log(`Authenticated as: ${viewer.login}`);
+
+        const eventsRes = await octokit.request('GET /users/{username}/events', {
             username,
             per_page: 30
         });
 
+        // Defensive check for data existence and type
+        const events = Array.isArray(eventsRes.data) ? eventsRes.data : [];
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const commitMessages = eventsRes.data
+        const commitMessages = events
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .filter((e: any) => e.type === 'PushEvent')
+            .filter((e: any) => e.type === 'PushEvent' && e.payload?.commits)
             .slice(0, 3)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .map((e: any) => e.payload.commits.map((c: any) => c.message).join('. '))
+            .map((e: any) => e.payload.commits.map((c: any) => c.message).join('. ') || "")
+            .filter((msg: string) => msg !== "")
             .join('; ');
 
         // 2. Fetch Top Languages
-        // We'll fetch the user's repos and aggregate language usage
-        const reposRes = await octokit.request('GET /users/{username}/repos', {
-            username,
+        // Use /user/repos to include private repositories for the authenticated user
+        const reposRes = await octokit.request('GET /user/repos', {
             type: 'owner',
             sort: 'updated',
-            per_page: 50 // Look at 50 most recently updated repos
+            per_page: 50
         });
 
         const languageCounts: Record<string, number> = {};

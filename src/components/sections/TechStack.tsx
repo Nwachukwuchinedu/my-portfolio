@@ -12,15 +12,15 @@ export default function TechStack({ githubSummary, isGithubLoading, topLanguages
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="glass-card rounded-3xl p-8 flex flex-col md:col-span-3 lg:col-span-2 group border-[#D4FF00]/30 hover:border-[#D4FF00] transition-colors reveal-blur relative overflow-hidden bg-gradient-to-br from-[#121215] to-[#1a2000]">
+                <div className="glass-card rounded-3xl p-8 flex flex-col justify-center md:col-span-3 lg:col-span-2 group border-[#D4FF00]/30 hover:border-[#D4FF00] transition-colors reveal-blur relative overflow-hidden bg-gradient-to-br from-[#121215] to-[#1a2000]">
                     <div className="absolute top-0 right-0 p-6 flex gap-2 items-center opacity-50 font-mono text-xs text-[#D4FF00]">
                         <span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4FF00] opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4FF00]"></span></span>
                         LIVE SYNC
                     </div>
                     <div className="w-14 h-14 rounded-2xl bg-[#D4FF00] flex items-center justify-center text-black mb-6"><Activity size={24} /></div>
                     <h3 className="text-2xl font-bold font-display mb-2 text-white">AI GitHub Analyst</h3>
-                    <p className="text-[#A1A1AA] text-sm mb-4">Gemini AI analyzing my latest repository commits:</p>
-                    <div className="bg-[#09090B] border border-[#27272A] rounded-2xl p-6 mt-auto font-mono text-sm leading-relaxed text-[#E4E4E7]">
+                    <p className="text-[#A1A1AA] text-sm mb-4">Groq AI analyzing my latest repository commits:</p>
+                    <div className="bg-[#09090B] border border-[#27272A] rounded-2xl p-6 font-mono text-sm leading-relaxed text-[#E4E4E7]">
                         {isGithubLoading ? <span className="animate-pulse text-[#A1A1AA]">&gt; Fetching and analyzing git history...</span> : <p>&gt; <span className="text-[#D4FF00]">System.out.print(</span>&quot;{githubSummary}&quot;<span className="text-[#D4FF00]">);</span></p>}
                     </div>
                 </div>
