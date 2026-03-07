@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, ArrowUpRight, ArrowDownRight, CheckCircle2, XCircle, 
