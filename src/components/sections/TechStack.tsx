@@ -1,6 +1,7 @@
 import { Activity, LineChart, Github, Server, Code2, Layers, GitBranch } from 'lucide-react';
+import { GitHubCalendar } from 'react-github-calendar';
 
-export default function TechStack({ githubSummary, isGithubLoading }: any) {
+export default function TechStack({ githubSummary, isGithubLoading, topLanguages = [] }: any) {
     return (
         <section id="stack" className="py-32 max-w-7xl mx-auto px-6 relative z-10">
             <div className="mb-16 reveal-on-scroll">
@@ -29,11 +30,29 @@ export default function TechStack({ githubSummary, isGithubLoading }: any) {
                     <p className="text-[#A1A1AA] text-sm mb-6">Real-time GitHub contributions and most used languages.</p>
 
                     <div className="mt-auto flex flex-col gap-4">
-                        <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 flex items-center justify-center group-hover:border-[#D4FF00]/30 transition-colors">
-                            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nwachukwuchinedu&layout=compact&theme=dark&hide_border=true&bg_color=09090B&title_color=D4FF00&text_color=A1A1AA" alt="Top Languages" className="w-full h-auto mix-blend-lighten" />
+                        <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 flex flex-col gap-2 group-hover:border-[#D4FF00]/30 transition-colors relative z-20">
+                            {topLanguages.length > 0 ? topLanguages.map((lang: any) => (
+                                <div key={lang.name} className="flex flex-col gap-1 w-full">
+                                    <div className="flex justify-between text-xs font-mono">
+                                        <span className="text-[#E4E4E7]">{lang.name}</span>
+                                        <span className="text-[#A1A1AA]">{lang.percentage.toFixed(1)}%</span>
+                                    </div>
+                                    <div className="w-full bg-[#27272A] rounded-full h-1.5">
+                                        <div className="bg-[#D4FF00] h-1.5 rounded-full" style={{ width: `${lang.percentage}%` }}></div>
+                                    </div>
+                                </div>
+                            )) : (
+                                <div className="text-[#A1A1AA] text-xs font-mono text-center py-4 animate-pulse">Scanning repositories...</div>
+                            )}
                         </div>
-                        <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 overflow-hidden group-hover:border-[#D4FF00]/30 transition-colors flex items-center justify-center">
-                            <img src="https://ghchart.rshah.org/D4FF00/Nwachukwuchinedu" alt="Contribution Graph" className="w-[120%] h-auto max-w-none opacity-80 group-hover:opacity-100 transition-opacity mix-blend-screen" />
+                        <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 overflow-hidden group-hover:border-[#D4FF00]/30 transition-colors flex items-center justify-center pointer-events-auto relative z-20">
+                            <GitHubCalendar
+                                username="Nwachukwuchinedu"
+                                colorScheme="dark"
+                                theme={{
+                                    dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                                }}
+                            />
                         </div>
                     </div>
                 </div>

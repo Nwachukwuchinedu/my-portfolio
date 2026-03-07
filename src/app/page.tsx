@@ -53,8 +53,9 @@ export default function App() {
   const negotiatorScrollRef = useRef<HTMLDivElement>(null);
 
   // GitHub AI Summary State
-  const [githubSummary, setGithubSummary] = useState("");
+  const [githubSummary, setGithubSummary] = useState("Loading...");
   const [isGithubLoading, setIsGithubLoading] = useState(true);
+  const [topLanguages, setTopLanguages] = useState<{ name: string, percentage: number }[]>([]);
 
   // Initialize Scroll, Cursor, & Fetch GitHub Summary
   useEffect(() => {
@@ -104,17 +105,13 @@ export default function App() {
     // Fetch and Summarize GitHub Activity
     const generateGithubSummary = async () => {
       try {
-        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-        const ghRes = await octokit.request('GET /users/{username}/events/public', {
-          username: 'Nwachukwuchinedu',
-          per_page: 30
-        });
+        const apiRes = await fetch('/api/github?username=Nwachukwuchinedu');
+        if (!apiRes.ok) throw new Error("Backend API Error");
 
-        const commitMessages = ghRes.data
-          .filter((e: any) => e.type === 'PushEvent')
-          .slice(0, 3)
-          .map((e: any) => e.payload.commits.map((c: any) => c.message).join('. '))
-          .join('; ');
+        const data = await apiRes.json();
+        setTopLanguages(data.topLanguages || []);
+
+        const commitMessages = data.commitMessages || "";
 
         const payload = {
           contents: [{ parts: [{ text: `You are summarizing a developer's recent git commits for their portfolio. Commits: "${commitMessages}". Write exactly one short, impressive, punchy sentence explaining what they have been building or fixing lately. Don't use quotes.` }] }],
