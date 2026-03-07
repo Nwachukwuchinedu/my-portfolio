@@ -28,12 +28,6 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [visitorRole, setVisitorRole] = useState('founder');
 
-  // Custom Cursor State
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [trailingCursorPos, setTrailingCursorPos] = useState({ x: 0, y: 0 });
-  const [activePill, setActivePill] = useState<string | null>(null); // 'project' | 'article' | null
-  const [isHoveringLink, setIsHoveringLink] = useState(false);
-
   // FAQ AI Animated Input State
   const [isFaqAiInputActive, setIsFaqAiInputActive] = useState(false);
   const [faqAiInput, setFaqAiInput] = useState("");
@@ -67,32 +61,6 @@ export default function App() {
 
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-
-    // Smooth trailing cursor animation loop
-    let requestRef: number;
-    let mouse = { x: 0, y: 0 };
-    const trailingMouse = { x: 0, y: 0 };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse = { x: e.clientX, y: e.clientY };
-      setCursorPos({ x: e.clientX, y: e.clientY });
-
-      // Check if hovering an interactive element
-      const target = e.target as HTMLElement;
-      const isClickable = target.closest('a, button, input, textarea, [role="button"]');
-      setIsHoveringLink(!!isClickable);
-    };
-
-    const animateCursor = () => {
-      // Lerp for smooth trailing effect
-      trailingMouse.x += (mouse.x - trailingMouse.x) * 0.2;
-      trailingMouse.y += (mouse.y - trailingMouse.y) * 0.2;
-      setTrailingCursorPos({ x: trailingMouse.x, y: trailingMouse.y });
-      requestRef = requestAnimationFrame(animateCursor);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    requestRef = requestAnimationFrame(animateCursor);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -140,8 +108,6 @@ export default function App() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(requestRef);
       observer.disconnect();
     };
   }, [isMenuOpen]);
@@ -327,18 +293,18 @@ export default function App() {
 
       <div className="fixed bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#09090B] via-[#09090B]/80 to-transparent pointer-events-none z-40 hidden md:block"></div>
 
-      <CustomCursor cursorPos={cursorPos} trailingCursorPos={trailingCursorPos} activePill={activePill} isHoveringLink={isHoveringLink} />
+      <CustomCursor />
 
       <Navbar scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       <Hero visitorRole={visitorRole} setVisitorRole={setVisitorRole} />
       <Marquee />
-      <Projects setActivePill={setActivePill} />
+      <Projects />
       <Process />
-      <TechStack githubSummary={githubSummary} isGithubLoading={isGithubLoading} />
+      <TechStack githubSummary={githubSummary} isGithubLoading={isGithubLoading} topLanguages={topLanguages} />
       <Stats />
-      <Blog setActivePill={setActivePill} />
+      <Blog />
 
       <Faq
         activeFaq={activeFaq}

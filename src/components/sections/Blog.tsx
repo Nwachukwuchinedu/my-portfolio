@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight, Calendar, BookOpen } from 'lucide-react';
 import { articles } from '@/constants/data';
 
-export default function Blog({ setActivePill }: any) {
+export default function Blog() {
     return (
         <section id="blog" className="py-32 px-6 max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll">
@@ -20,8 +20,7 @@ export default function Blog({ setActivePill }: any) {
                         href="#"
                         className="article-card glass-card rounded-3xl overflow-hidden group hover:border-[#D4FF00]/50 transition-all duration-300 reveal-on-scroll flex flex-col"
                         style={{ transitionDelay: `${idx * 150}ms` }}
-                        onMouseEnter={() => setActivePill('article')}
-                        onMouseLeave={() => setActivePill(null)}
+                        data-cursor-pill="article"
                     >
                         <div className="h-48 overflow-hidden relative border-b border-[#27272A]">
                             <img src={article.img} alt={article.title} className="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" />

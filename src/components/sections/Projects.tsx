@@ -1,6 +1,6 @@
 import { projects } from '@/constants/data';
 
-export default function Projects({ setActivePill }: any) {
+export default function Projects() {
     return (
         <section id="work" className="py-32 px-6 max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll">
@@ -16,8 +16,7 @@ export default function Projects({ setActivePill }: any) {
                         key={project.id}
                         className={`project-card group relative rounded-3xl overflow-hidden glass-card p-2 reveal-scale ${idx === 0 || idx === 3 ? 'md:col-span-1 md:row-span-2' : ''}`}
                         style={{ transitionDelay: `${idx * 150}ms` }}
-                        onMouseEnter={() => setActivePill('project')}
-                        onMouseLeave={() => setActivePill(null)}
+                        data-cursor-pill="project"
                     >
                         <div className="relative h-[400px] md:h-full min-h-[400px] w-full rounded-2xl overflow-hidden bg-[#18181B]">
                             <img src={project.img} alt={project.title} className="w-full h-full object-cover opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal" />
