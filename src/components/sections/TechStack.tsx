@@ -30,10 +30,10 @@ export default function TechStack({ githubSummary, isGithubLoading }: any) {
 
                     <div className="mt-auto flex flex-col gap-4">
                         <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 flex items-center justify-center group-hover:border-[#D4FF00]/30 transition-colors">
-                            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=leerob&layout=compact&theme=dark&hide_border=true&bg_color=09090B&title_color=D4FF00&text_color=A1A1AA" alt="Top Languages" className="w-full h-auto mix-blend-lighten" />
+                            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nwachukwuchinedu&layout=compact&theme=dark&hide_border=true&bg_color=09090B&title_color=D4FF00&text_color=A1A1AA" alt="Top Languages" className="w-full h-auto mix-blend-lighten" />
                         </div>
                         <div className="bg-[#09090B] rounded-xl border border-[#27272A] p-4 overflow-hidden group-hover:border-[#D4FF00]/30 transition-colors flex items-center justify-center">
-                            <img src="https://ghchart.rshah.org/D4FF00/leerob" alt="Contribution Graph" className="w-[120%] h-auto max-w-none opacity-80 group-hover:opacity-100 transition-opacity mix-blend-screen" />
+                            <img src="https://ghchart.rshah.org/D4FF00/Nwachukwuchinedu" alt="Contribution Graph" className="w-[120%] h-auto max-w-none opacity-80 group-hover:opacity-100 transition-opacity mix-blend-screen" />
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ import Negotiator from '@/components/sections/Negotiator';
 import Footer from '@/components/layout/Footer';
 import ChatWidget from '@/components/ui/ChatWidget';
 import { fetchWithBackoff } from '@/lib/utils';
+import { Octokit } from 'octokit';
 
 // --- API CONFIGURATION ---
 const apiKey = ""; // Environment provides this at runtime
@@ -103,10 +104,13 @@ export default function App() {
     // Fetch and Summarize GitHub Activity
     const generateGithubSummary = async () => {
       try {
-        const ghRes = await fetch('https://api.github.com/users/gaearon/events/public');
-        if (!ghRes.ok) throw new Error("GitHub API limit");
-        const ghData = await ghRes.json();
-        const commitMessages = ghData
+        const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+        const ghRes = await octokit.request('GET /users/{username}/events/public', {
+          username: 'Nwachukwuchinedu',
+          per_page: 30
+        });
+
+        const commitMessages = ghRes.data
           .filter((e: any) => e.type === 'PushEvent')
           .slice(0, 3)
           .map((e: any) => e.payload.commits.map((c: any) => c.message).join('. '))
