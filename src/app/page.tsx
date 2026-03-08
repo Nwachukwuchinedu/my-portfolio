@@ -19,9 +19,7 @@ import { fetchWithBackoff } from '@/lib/utils';
 import { Octokit } from 'octokit';
 
 // --- API CONFIGURATION ---
-const groqApiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY || "";
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_MODEL = "llama-3.3-70b-versatile";
+// Groq AI is now handled securely via /api/ai server route using groq-sdk and the 120B model.
 
 export default function App() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -91,9 +89,10 @@ export default function App() {
 
         const commitMessages = data.commitMessages || "";
 
-        if (groqApiKey) {
-          const payload = {
-            model: GROQ_MODEL,
+        const aiRes = await fetch('/api/ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
             messages: [
               {
                 role: "system",
@@ -104,24 +103,13 @@ export default function App() {
                 content: `Here are the recent commits: "${commitMessages}"`
               }
             ],
-            temperature: 0.7,
-            max_completion_tokens: 100
-          };
+            max_tokens: 100
+          })
+        });
 
-          const aiRes = await fetchWithBackoff(GROQ_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${groqApiKey}`
-            },
-            body: JSON.stringify(payload)
-          });
-
-          const summary = aiRes.choices?.[0]?.message?.content || "Recently pushed updates optimizing core application performance and streamlining CI/CD pipelines.";
-          setGithubSummary(summary);
-        } else {
-          setGithubSummary("Actively pushing code: optimizing system architecture, refining UI components, and squashing bugs in production.");
-        }
+        const aiData = await aiRes.json();
+        const summary = aiData.content || "Recently pushed updates optimizing core application performance and streamlining CI/CD pipelines.";
+        setGithubSummary(summary);
       } catch {
         setGithubSummary("Consistently shipping production-ready code, optimizing architecture, and resolving edge-case bugs.");
       } finally {
@@ -161,36 +149,30 @@ export default function App() {
     setIsChatLoading(true);
 
     try {
-      const payload = {
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: "system",
-            content: "You are the AI portfolio assistant for SYS.DEV, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences."
-          },
-          ...chatMessages.map(m => ({
-            role: m.role as 'assistant' | 'user',
-            content: m.text
-          })),
-          { role: 'user', content: userMessage }
-        ],
-        temperature: 0.7,
-        max_completion_tokens: 200
-      };
-
-      const aiRes = await fetchWithBackoff(GROQ_URL, {
+      const chatRes = await fetch('/api/ai', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${groqApiKey}`
-        },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: "You are the AI portfolio assistant for SYS.DEV, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences."
+            },
+            ...chatMessages.map(m => ({
+              role: m.role as 'assistant' | 'user',
+              content: m.text
+            })),
+            { role: 'user', content: userMessage }
+          ],
+          max_tokens: 200
+        })
       });
 
-      const responseText = aiRes.choices?.[0]?.message?.content || "I'm having trouble connecting to my knowledge base right now. Please email me directly!";
-      setChatMessages(prev => [...prev, { role: 'model', text: responseText }]);
+      const aiData = await chatRes.json();
+      const responseText = aiData.content || "I'm having trouble connecting to my knowledge base right now. Please email me directly!";
+      setChatMessages(prev => [...prev, { role: 'assistant', text: responseText }]);
     } catch {
-      setChatMessages(prev => [...prev, { role: 'model', text: "Error connecting to AI. Please try again later or reach out via email." }]);
+      setChatMessages(prev => [...prev, { role: 'assistant', text: "Error connecting to AI. Please try again later or reach out via email." }]);
     } finally {
       setIsChatLoading(false);
     }
@@ -224,36 +206,31 @@ export default function App() {
     setIsNegotiating(true);
 
     try {
-      const payload = {
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: "system",
-            content: "You are the AI proxy for SYS.DEV, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely."
-          },
-          ...negotiationChat.map(m => ({
-            role: m.role as 'assistant' | 'user',
-            content: m.text
-          })),
-          { role: 'user', content: userOffer }
-        ],
-        temperature: 0.8,
-        max_completion_tokens: 200
-      };
-
-      const aiRes = await fetchWithBackoff(GROQ_URL, {
+      const negRes = await fetch('/api/ai', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${groqApiKey}`
-        },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: "You are the AI proxy for SYS.DEV, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely."
+            },
+            ...negotiationChat.map(m => ({
+              role: m.role as 'assistant' | 'user',
+              content: m.text
+            })),
+            { role: 'user', content: userOffer }
+          ],
+          temperature: 0.8,
+          max_tokens: 200
+        })
       });
 
-      const responseText = aiRes.choices?.[0]?.message?.content || "Let's move this to a live call. I'd love to discuss how I can bring massive value to your team.";
-      setNegotiationChat(prev => [...prev, { role: 'model', text: responseText }]);
+      const aiData = await negRes.json();
+      const responseText = aiData.content || "Let's move this to a live call. I'd love to discuss how I can bring massive value to your team.";
+      setNegotiationChat(prev => [...prev, { role: 'assistant', text: responseText }]);
     } catch {
-      setNegotiationChat(prev => [...prev, { role: 'model', text: "Error connecting to my negotiation logic. Let's just say I know my worth! Email me to chat for real." }]);
+      setNegotiationChat(prev => [...prev, { role: 'assistant', text: "Error connecting to my negotiation logic. Let's just say I know my worth! Email me to chat for real." }]);
     } finally {
       setIsNegotiating(false);
     }
