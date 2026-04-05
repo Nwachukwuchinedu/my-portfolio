@@ -10,7 +10,7 @@ export default function ChatWidget({
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-[#D4FF00] flex items-center justify-center text-black"><Terminal size={16} /></div>
                         <div>
-                            <h4 className="font-bold text-sm">SYS.DEV AI</h4>
+                            <h4 className="font-bold text-sm">SIM.EON AI</h4>
                             <p className="text-[10px] text-[#A1A1AA] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Online</p>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ export default function Navbar({ scrolled, isMenuOpen, setIsMenuOpen }: any) {
         <nav className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-300 ${scrolled || isMenuOpen ? 'py-4 bg-[#09090B]/80 backdrop-blur-md border-b border-[#27272A]' : 'py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <div className={`font-display font-bold text-xl tracking-tight flex items-center gap-2 relative z-[80] transition-colors duration-300 ${isMenuOpen ? 'text-white' : ''}`}>
-                    <Terminal className="text-[#D4FF00]" size={24} /> SYS<span className="text-[#D4FF00]">.</span>DEV
+                    <Terminal className="text-[#D4FF00]" size={24} /> SIM<span className="text-[#D4FF00]">.</span>EON
                 </div>
 
                 <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-[#A1A1AA] glass-card px-8 py-3 rounded-full shadow-lg">

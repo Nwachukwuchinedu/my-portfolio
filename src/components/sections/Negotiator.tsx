@@ -29,7 +29,7 @@ export default function Negotiator({
                             <DollarSign size={20} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-sm text-white font-display">SYS.DEV Negotiator</h4>
+                            <h4 className="font-bold text-sm text-white font-display">SIM.EON Negotiator</h4>
                             <p className="text-[10px] text-[#A1A1AA] font-mono flex items-center gap-1">
                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Standing firm
                             </p>

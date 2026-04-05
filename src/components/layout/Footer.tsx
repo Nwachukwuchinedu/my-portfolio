@@ -10,7 +10,7 @@ export default function Footer() {
 
                     <div className="md:col-span-5 lg:col-span-4 flex flex-col items-start reveal-on-scroll">
                         <div className="font-display font-bold text-2xl tracking-tight flex items-center gap-2 mb-6 text-white">
-                            <Terminal className="text-[#D4FF00]" size={28} /> SYS<span className="text-[#D4FF00]">.</span>DEV
+                            <Terminal className="text-[#D4FF00]" size={28} /> SIM<span className="text-[#D4FF00]">.</span>EON
                         </div>
                         <p className="text-[#A1A1AA] text-sm leading-relaxed mb-8 max-w-sm">
                             Architecting and building high-performance web applications and resilient backend systems designed for scale.
@@ -57,7 +57,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between items-center border-t border-[#27272A]/50 pt-8 mt-8 text-[#A1A1AA] text-xs font-mono reveal-on-scroll" style={{ transitionDelay: '400ms' }}>
-                    <p>© {new Date().getFullYear()} SYS.DEV. Crafted with precision.</p>
+                    <p>© {new Date().getFullYear()} SIM.EON. Crafted with precision.</p>
                     <p className="mt-4 md:mt-0 flex items-center gap-2">
                         Designed & Built using <Code2 size={14} className="text-[#D4FF00]" />
                     </p>

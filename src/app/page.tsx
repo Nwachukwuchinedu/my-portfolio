@@ -35,7 +35,7 @@ export default function App() {
 
   // AI Chatbot State
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([{ role: 'assistant', text: "Hi! I'm the AI assistant for SYS.DEV. Ask me anything about their experience, tech stack, or availability!" }]);
+  const [chatMessages, setChatMessages] = useState([{ role: 'assistant', text: "Hi! I'm the AI assistant for SIM.EON. Ask me anything about their experience, tech stack, or availability!" }]);
   const [chatInput, setChatInput] = useState("");
   const [isChatLoading, setIsChatLoading] = useState(false);
   const chatScrollRef = useRef<HTMLDivElement>(null);
@@ -157,7 +157,7 @@ export default function App() {
           messages: [
             {
               role: "system",
-              content: "You are the AI portfolio assistant for SYS.DEV, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences."
+              content: "You are the AI portfolio assistant for SIM.EON, a Senior Software Engineer. You answer questions about their skills, experience, and projects concisely and professionally. Context: 10 years experience. Stack: React, Next.js, Node.js, Go, AWS, Docker. Projects: NovaScale Microservices, Nexus Trading, Aether Auth. Known for clean scalable architecture and timely delivery. If asked about hiring, say they are currently available for select freelance projects or senior full-time roles. Keep answers to 1-2 short sentences."
             },
             ...chatMessages.map(m => ({
               role: m.role as 'assistant' | 'user',
@@ -214,7 +214,7 @@ export default function App() {
           messages: [
             {
               role: "system",
-              content: "You are the AI proxy for SYS.DEV, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely."
+              content: "You are the AI proxy for SIM.EON, a highly skilled Senior Software Engineer with 10 years of experience. The user is a recruiter or client making a salary or project budget offer. Your goal is to negotiate professionally, confidently, and creatively. If the offer is below market rate (e.g., under $130k/year, $80/hr, or $10k per project), politely but firmly counter-offer, highlighting your specific value (scalable architecture, reliable delivery, React/Node/AWS). If the offer is fair or high, express strong interest while remaining professional. Keep responses to 1-3 short sentences. You know your worth and communicate exceptionally well. End your response politely."
             },
             ...negotiationChat.map(m => ({
               role: m.role as 'assistant' | 'user',
