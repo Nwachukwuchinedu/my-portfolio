@@ -16,9 +16,12 @@ export default function Navbar({ scrolled, isMenuOpen, setIsMenuOpen }: any) {
                     <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
                 </div>
 
-                <button className="hidden md:flex bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-[#D4FF00] transition-colors duration-300 items-center gap-2">
+                <a 
+                    href="mailto:chinedu.simeon2020@gmail.com" 
+                    className="hidden md:flex bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-[#D4FF00] transition-colors duration-300 items-center gap-2"
+                >
                     Hire Me <ArrowRight size={16} />
-                </button>
+                </a>
 
                 <button
                     className="md:hidden relative z-[80] w-12 h-12 flex flex-col justify-center items-center gap-1.5 glass-card rounded-full border border-[#27272A] bg-[#121215]/80"
