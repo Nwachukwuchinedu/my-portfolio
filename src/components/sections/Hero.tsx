@@ -45,9 +45,14 @@ export default function Hero({ visitorRole, setVisitorRole }: any) {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-[fadeInUp_0.9s_ease-out]">
-                    <button className="bg-[#D4FF00] text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+                    <a 
+                        href="https://github.com/Nwachukwuchinedu" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="bg-[#D4FF00] text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors flex items-center justify-center gap-2"
+                    >
                         View Repositories <Github size={20} />
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>

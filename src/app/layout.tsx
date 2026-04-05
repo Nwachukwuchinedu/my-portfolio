@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'SIM.EON | Engineer',
     template: '%s | SIM.EON',
   },
-  description: 'Engineer and Technologist with 5+ years of experience building scalable, high-performance systems and data-driven solutions.',
+  description: 'Engineer with 5+ years of experience building scalable, high-performance systems and data-driven solutions.',
   keywords: [
     'Senior Software Engineer',
     'Full Stack Developer',
