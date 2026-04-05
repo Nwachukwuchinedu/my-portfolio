@@ -7,6 +7,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import Hero from '@/components/sections/Hero';
 import Marquee from '@/components/sections/Marquee';
 import Projects from '@/components/sections/Projects';
+import Experience from '@/components/sections/Experience';
 import Process from '@/components/sections/Process';
 import TechStack from '@/components/sections/TechStack';
 import Stats from '@/components/sections/Stats';
@@ -318,6 +319,7 @@ export default function App() {
       <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       <Hero visitorRole={visitorRole} setVisitorRole={setVisitorRole} />
+      <Experience />
       <Marquee />
       <Projects />
       <Process />

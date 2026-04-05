@@ -19,6 +19,54 @@ export const articles = [
     { id: 3, title: 'From Monolith to Serverless: Hard Lessons Learned in Production', date: 'Aug 05, 2025', category: 'Architecture', readTime: '12 min read', img: 'https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop' },
 ];
 
+export const experiences = [
+    {
+        id: 1,
+        company: "Shop24mart",
+        role: "Software Developer",
+        period: "2026",
+        location: "Edo State, Nigeria",
+        description: "Developed and scaled a production-ready e-commerce system with a strong focus on performance, reliability, and real-world business logic. Built secure and efficient RESTful APIs for products, cart, orders, and inventory, including advanced stock management with variants and a centralized inventory ledger. Integrated payment systems with webhook handling for real-time transaction updates, and optimized backend performance to reduce latency and improve scalability. Additionally, engineered a desktop application that runs locally in the background, seamlessly communicating with the server and receipt printers to automatically process and print customer purchase receipts bridging online systems with physical retail operations.",
+        stack: ["Nodejs", "vuejs", "typescript", "Docker", "Desktop App Integration", "mongodb"]
+    },
+    {
+        id: 2,
+        company: "SBM Forex Academy",
+        role: "Software Developer",
+        period: "2026",
+        location: "Edo State, Nigeria",
+        description: "Designed and developed a high-converting fintech platform for a forex mentorship program, engineered to maximize user acquisition, engagement, and revenue. Built a responsive, production-grade interface that clearly communicates complex trading concepts and program value, while integrating secure payment processing (HitchPay) for seamless enrollment. Implemented advanced user analytics and tracking systems to capture and analyze visitor behavior across links/URLs, enabling data-driven optimization of conversion funnels and marketing performance. Focused on delivering a fast, intuitive user experience with scalable architecture capable of handling high traffic and time-sensitive enrollment campaigns.",
+        stack: ["Nextjs", "Hitchpay", "AWS", "Docker"]
+    },
+    {
+        id: 3,
+        company: "Diviva Ltd",
+        role: "Backend Developer & Backend Team Lead",
+        period: "2025",
+        location: "Remote (Lagos, Nigeria)",
+        description: "Led the backend team at Diviva Ltd, architecting and developing robust RESTful APIs for multiple platforms, including a recruitment platform and a real estate solution. Oversaw the implementation of advanced features such as Applicant Tracking Systems (ATS) and an AI-powered chat application for automated user engagement. Utilized Node.js, Python, and MongoDB to deliver scalable, high-performance backend services. Collaborated cross-functionally to ensure seamless integration and deployment of backend solutions in a remote-first environment.",
+        stack: ["Node.js", "Python", "MongoDB", "AI-Chat Integration"]
+    },
+    {
+        id: 4,
+        company: "Achilles Drill",
+        role: "Frontend Web Developer",
+        period: "2024 - Present",
+        location: "Lagos State, Nigeria",
+        description: "Collaborated with the Achilles Drill team to develop a responsive and user-friendly website using Vue.js. Designed and implemented the user interface, integrated REST APIs, and implemented authentication. Ensured cross-browser compatibility and optimized application performance. Built a certificate and birthday generator.",
+        stack: ["Vue.js", "REST APIs", "Authentication", "Performance Optimization"]
+    },
+    {
+        id: 5,
+        company: "SPE UNIBEN Chapter",
+        role: "Full Stack Developer",
+        period: "2019 - 2021",
+        location: "Edo State, Nigeria",
+        description: "Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility. Utilized Chart.js for data visualization and Node.js with MongoDB for backend functionality.",
+        stack: ["Vue.js", "Node.js", "MongoDB", "Chart.js"]
+    }
+];
+
 export const personaContent = {
     founder: {
         label: "Founder / Client",
