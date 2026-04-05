@@ -72,18 +72,18 @@ export const personaContent = {
         label: "Founder / Client",
         icon: Briefcase,
         heroTitle: "Robust Engineering for Scalable Growth.",
-        heroSub: "I architect and build high-performance web applications, resilient backend systems, and seamless digital experiences that drive revenue and don't break at scale."
+        heroSub: "I architect and build high-performance systems, resilient architectures, and seamless digital experiences that drive revenue and don't break at scale."
     },
     recruiter: {
-        label: "Tech Recruiter",
+        label: "Tech Partner",
         icon: UserCircle,
-        heroTitle: "A Senior Engineer You Can Actually Rely On.",
-        heroSub: "Ready to hit the ground running. I bring 10+ years of clean code, agile delivery, robust CI/CD practices, and mentorship to your engineering team."
+        heroTitle: "An Engineer You Can Actually Rely On.",
+        heroSub: "Ready to hit the ground running. I bring 5+ years of clean code, agile delivery, robust CI/CD practices, and technical leadership to your team."
     },
     developer: {
-        label: "Fellow Developer",
+        label: "Fellow Engineer",
         icon: Terminal,
         heroTitle: "Building DX-First Scalable Architectures.",
-        heroSub: "From containerized microservices to buttery-smooth React UIs. Let's talk system design, VIM setups, edge computing, and avoiding spaghetti codebases."
+        heroSub: "From containerized systems to buttery-smooth interfaces. Let's talk system design, VIM setups, data pipelines, and avoiding spaghetti codebases."
     }
 };
