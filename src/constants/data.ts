@@ -27,7 +27,7 @@ export const experiences = [
         period: "2026",
         location: "Edo State, Nigeria",
         description: "Developed and scaled a production-ready e-commerce system with a strong focus on performance, reliability, and real-world business logic. Built secure and efficient RESTful APIs for products, cart, orders, and inventory, including advanced stock management with variants and a centralized inventory ledger. Integrated payment systems with webhook handling for real-time transaction updates, and optimized backend performance to reduce latency and improve scalability. Additionally, engineered a desktop application that runs locally in the background, seamlessly communicating with the server and receipt printers to automatically process and print customer purchase receipts bridging online systems with physical retail operations.",
-        stack: ["Nodejs", "vuejs", "typescript", "Docker", "Desktop App Integration", "mongodb"]
+        stack: ["Nodejs", "vuejs", "typescript", "Docker", "Desktop App Integration", "mongodb", "CI/CD Pipelines"]
     },
     {
         id: 2,
@@ -36,7 +36,7 @@ export const experiences = [
         period: "2026",
         location: "Edo State, Nigeria",
         description: "Designed and developed a high-converting fintech platform for a forex mentorship program, engineered to maximize user acquisition, engagement, and revenue. Built a responsive, production-grade interface that clearly communicates complex trading concepts and program value, while integrating secure payment processing (HitchPay) for seamless enrollment. Implemented advanced user analytics and tracking systems to capture and analyze visitor behavior across links/URLs, enabling data-driven optimization of conversion funnels and marketing performance. Focused on delivering a fast, intuitive user experience with scalable architecture capable of handling high traffic and time-sensitive enrollment campaigns.",
-        stack: ["Nextjs", "Hitchpay", "AWS", "Docker"]
+        stack: ["Nextjs", "typescript", "Hitchpay", "AWS", "Docker", "CI/CD Pipelines"]
     },
     {
         id: 3,
