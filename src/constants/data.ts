@@ -55,16 +55,16 @@ export const experiences = [
         location: "Lagos State, Nigeria",
         description: "Collaborated with the Achilles Drill team to develop a responsive and user-friendly website using Vue.js. Designed and implemented the user interface, integrated REST APIs, and implemented authentication. Ensured cross-browser compatibility and optimized application performance. Built a certificate and birthday generator.",
         stack: ["Vue.js", "REST APIs", "Authentication", "Performance Optimization"]
-    },
-    {
-        id: 5,
-        company: "SPE UNIBEN Chapter",
-        role: "Full Stack Developer",
-        period: "2019 - 2021",
-        location: "Edo State, Nigeria",
-        description: "Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility. Utilized Chart.js for data visualization and Node.js with MongoDB for backend functionality.",
-        stack: ["Vue.js", "Node.js", "MongoDB", "Chart.js"]
     }
+    // {
+    //     id: 5,
+    //     company: "SPE UNIBEN Chapter",
+    //     role: "Full Stack Developer",
+    //     period: "2019 - 2021",
+    //     location: "Edo State, Nigeria",
+    //     description: "Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility. Utilized Chart.js for data visualization and Node.js with MongoDB for backend functionality.",
+    //     stack: ["Vue.js", "Node.js", "MongoDB", "Chart.js"]
+    // }
 ];
 
 export const personaContent = {
