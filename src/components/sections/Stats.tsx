@@ -24,9 +24,9 @@ export default function Stats() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {[
-                        { name: "David Chen", role: "CTO, FintechOps", text: "The cleanest, most well-documented React codebase I've ever inherited. Setting up CI/CD with him was flawless." },
-                        { name: "Sarah Miller", role: "Founder, ScaleSaaS", text: "Not just a coder, but an actual engineer. He architected our entire AWS backend to handle a 500% spike in traffic without a sweat." },
-                        { name: "James Holden", role: "VP Engineering", text: "Hiring him was the best technical decision we made this year. He refactored our legacy monolithic API into blazing fast microservices." }
+                        { name: "Samuel", role: "Founder, Shop24mart", text: "His ability to bridge the gap between our online e-commerce platform and physical store operations was impressive. The custom desktop integration for automatic receipt printing has completely transformed our workflow." },
+                        { name: "Emmanuel", role: "Founder of Stafyn", text: "An exceptional engineer who doesn't just write code but understands business scaling. He built our core infrastructure from scratch, ensuring it was robust enough to handle our rapid user growth." },
+                        { name: "David", role: "Software Developer", text: "Working with him was a masterclass in clean architecture. His implementation of TDD and CI/CD pipelines significantly improved our team's delivery speed and code reliability." }
                     ].map((test, idx) => (
                         <div key={idx} className="glass-card p-8 rounded-3xl reveal-on-scroll" style={{ transitionDelay: `${idx * 150}ms` }}>
                             <div className="flex text-[#D4FF00] mb-6 gap-1">{[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}</div>

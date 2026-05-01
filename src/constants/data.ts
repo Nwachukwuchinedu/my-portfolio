@@ -1,18 +1,20 @@
 import { UserCircle, Briefcase, Terminal } from 'lucide-react';
+import shop24martImg from '@/assets/projects/shop24mart.png';
+import sbmforexImg from '@/assets/projects/sbmforexacademy.png';
 
 export const projects = [
     { 
         id: 1, 
         title: 'Shop24mart', 
         stack: 'Node.js • Vue.js • TypeScript • MongoDB', 
-        img: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2089&auto=format&fit=crop',
+        img: shop24martImg.src,
         link: 'https://shop24mart.com'
     },
     { 
         id: 2, 
         title: 'SBM Forex Academy', 
         stack: 'Next.js • TypeScript • Tailwind • AWS', 
-        img: 'https://images.unsplash.com/photo-1611974717483-5828518e3ec3?q=80&w=2070&auto=format&fit=crop',
+        img: sbmforexImg.src,
         link: 'https://sbmforexacademy.com'
     },
     { 
@@ -79,16 +81,16 @@ export const experiences = [
         location: "Lagos State, Nigeria",
         description: "Collaborated with the Achilles Drill team to develop a responsive and user-friendly website using Vue.js. Designed and implemented the user interface, integrated REST APIs, and implemented authentication. Ensured cross-browser compatibility and optimized application performance. Built a certificate and birthday generator.",
         stack: ["Vue.js", "REST APIs", "Authentication", "Performance Optimization"]
+    },
+    {
+        id: 5,
+        company: "SPE UNIBEN Chapter",
+        role: "Full Stack Developer",
+        period: "2019 - 2021",
+        location: "Edo State, Nigeria",
+        description: "Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility. Utilized Chart.js for data visualization and Node.js with MongoDB for backend functionality.",
+        stack: ["Vue.js", "Node.js", "MongoDB", "Chart.js"]
     }
-    // {
-    //     id: 5,
-    //     company: "SPE UNIBEN Chapter",
-    //     role: "Full Stack Developer",
-    //     period: "2019 - 2021",
-    //     location: "Edo State, Nigeria",
-    //     description: "Developed and maintained the SPE UNIBEN voting website using Vue.js, CSS3, JavaScript, Chart.js, Node.js, and MongoDB. Implemented responsive design principles for cross-device compatibility. Utilized Chart.js for data visualization and Node.js with MongoDB for backend functionality.",
-    //     stack: ["Vue.js", "Node.js", "MongoDB", "Chart.js"]
-    // }
 ];
 
 export const personaContent = {
