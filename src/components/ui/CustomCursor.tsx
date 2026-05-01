@@ -122,7 +122,7 @@ export default function CustomCursor() {
                 style={{ transform: `translate3d(-10px, -10px, 0)` }}
             >
                 <div className="transition-transform duration-300 scale-50 bg-[#D4FF00] text-black px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-[0_0_20px_rgba(212,255,0,0.4)] backdrop-blur-md whitespace-nowrap">
-                    {pillType === 'project' && <>View Source <Github size={16} /></>}
+                    {pillType === 'project' && <>Live Preview <ArrowUpRight size={16} /></>}
                     {pillType === 'article' && <>Read Article <ArrowUpRight size={16} /></>}
                 </div>
             </div>

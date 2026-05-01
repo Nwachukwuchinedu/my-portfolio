@@ -12,14 +12,17 @@ export default function Projects() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, idx) => (
-                    <div
+                    <a
                         key={project.id}
-                        className={`project-card group relative rounded-3xl overflow-hidden glass-card p-2 reveal-scale ${idx === 0 || idx === 3 ? 'md:col-span-1 md:row-span-2' : ''}`}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`project-card group block relative rounded-3xl overflow-hidden glass-card p-2 reveal-scale`}
                         style={{ transitionDelay: `${idx * 150}ms` }}
                         data-cursor-pill="project"
                     >
-                        <div className="relative h-[400px] md:h-full min-h-[400px] w-full rounded-2xl overflow-hidden bg-[#18181B]">
-                            <img src={project.img} alt={project.title} className="w-full h-full object-cover opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal" />
+                        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#18181B]">
+                            <img src={project.img} alt={project.title} className="w-full h-full object-cover object-top opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal" />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent opacity-80"></div>
                         </div>
                         <div className="absolute bottom-0 left-0 p-8 w-full pointer-events-none">
@@ -32,7 +35,7 @@ export default function Projects() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
