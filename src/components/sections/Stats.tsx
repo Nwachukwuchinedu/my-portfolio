@@ -15,7 +15,7 @@ export default function Stats() {
                     </div>
                     <div className="reveal-scale" style={{ transitionDelay: '200ms' }}>
                         <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">7<span className="text-[#D4FF00]">k+</span></div>
-                        <div className="font-mono text-xs text-[#A1A1AA]">TOTAL_CONTRIBUTIONS</div>
+                        <div className="font-mono text-xs text-[#A1A1AA]">COMMITS_PUSHED</div>
                     </div>
                     <div className="reveal-scale" style={{ transitionDelay: '300ms' }}>
                         <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">0</div>
