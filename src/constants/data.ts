@@ -1,10 +1,34 @@
 import { UserCircle, Briefcase, Terminal } from 'lucide-react';
 
 export const projects = [
-    { id: 1, title: 'NovaScale Microservices', stack: 'Go • Kubernetes • AWS', img: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop' },
-    { id: 2, title: 'Nexus Trading Engine', stack: 'Node.js • Redis • React', img: 'https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=2062&auto=format&fit=crop' },
-    { id: 3, title: 'Aether Auth Protocol', stack: 'TypeScript • PostgreSQL', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop' },
-    { id: 4, title: 'Vortex Data Pipeline', stack: 'Python • Apache Kafka', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop' },
+    { 
+        id: 1, 
+        title: 'Shop24mart', 
+        stack: 'Node.js • Vue.js • TypeScript • MongoDB', 
+        img: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2089&auto=format&fit=crop',
+        link: 'https://shop24mart.com'
+    },
+    { 
+        id: 2, 
+        title: 'SBM Forex Academy', 
+        stack: 'Next.js • TypeScript • Tailwind • AWS', 
+        img: 'https://images.unsplash.com/photo-1611974717483-5828518e3ec3?q=80&w=2070&auto=format&fit=crop',
+        link: 'https://sbmforexacademy.com'
+    },
+    { 
+        id: 3, 
+        title: 'Diviva CRM', 
+        stack: 'Node.js • Python • MongoDB', 
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop',
+        link: '#'
+    },
+    { 
+        id: 4, 
+        title: 'Achilles Drill', 
+        stack: 'Vue.js • REST APIs • Node.js', 
+        img: 'https://images.unsplash.com/photo-1551288049-bbbda536ad37?q=80&w=2070&auto=format&fit=crop',
+        link: '#'
+    },
 ];
 
 export const faqs = [

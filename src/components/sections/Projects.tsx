@@ -12,9 +12,12 @@ export default function Projects() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, idx) => (
-                    <div
+                    <a
                         key={project.id}
-                        className={`project-card group relative rounded-3xl overflow-hidden glass-card p-2 reveal-scale ${idx === 0 || idx === 3 ? 'md:col-span-1 md:row-span-2' : ''}`}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`project-card group block relative rounded-3xl overflow-hidden glass-card p-2 reveal-scale ${idx === 0 || idx === 3 ? 'md:col-span-1 md:row-span-2' : ''}`}
                         style={{ transitionDelay: `${idx * 150}ms` }}
                         data-cursor-pill="project"
                     >
@@ -32,7 +35,7 @@ export default function Projects() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
