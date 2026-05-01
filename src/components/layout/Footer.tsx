@@ -37,7 +37,7 @@ export default function Footer() {
                             <ul className="space-y-4 text-sm text-[#A1A1AA]">
                                 <li><a href="https://github.com/Nwachukwuchinedu" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4FF00] transition-colors flex items-center gap-2"><Github size={16} /> GitHub</a></li>
                                 <li><a href="https://www.linkedin.com/in/chinedu-nwachukwu-921188288/" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4FF00] transition-colors flex items-center gap-2"><Linkedin size={16} /> LinkedIn</a></li>
-                                <li><a href="mailto:chinedu.simeon2020@gmail.com" className="hover:text-[#D4FF00] transition-colors flex items-center gap-2"><Mail size={16} /> Email Me</a></li>
+                                <li><a href="mailto:hello@thesimeon.site" className="hover:text-[#D4FF00] transition-colors flex items-center gap-2"><Mail size={16} /> Email Me</a></li>
                             </ul>
                         </div>
 

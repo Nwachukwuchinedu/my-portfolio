@@ -1,6 +1,9 @@
 import { UserCircle, Briefcase, Terminal } from 'lucide-react';
 import shop24martImg from '@/assets/projects/shop24mart.png';
 import sbmforexImg from '@/assets/projects/sbmforexacademy.png';
+import annahIbukunImg from '@/assets/projects/annah-ibukun.png';
+import epigraphImg from '@/assets/projects/epigraph-bookstore.png';
+import achillesDrillImg from '@/assets/projects/achilles-drill.png';
 
 export const projects = [
     { 
@@ -19,7 +22,7 @@ export const projects = [
     },
     { 
         id: 3, 
-        title: 'Diviva CRM', 
+        title: 'Diviva Ltd', 
         stack: 'Node.js • Python • MongoDB', 
         img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop',
         link: '#'
@@ -28,8 +31,22 @@ export const projects = [
         id: 4, 
         title: 'Achilles Drill', 
         stack: 'Vue.js • REST APIs • Node.js', 
-        img: 'https://images.unsplash.com/photo-1551288049-bbbda536ad37?q=80&w=2070&auto=format&fit=crop',
+        img: achillesDrillImg.src,
         link: '#'
+    },
+    { 
+        id: 5, 
+        title: 'Annah Ibukun', 
+        stack: 'React.js • TypeScript • Vite • Tailwind', 
+        img: annahIbukunImg.src,
+        link: 'https://annah-ibukun.vercel.app'
+    },
+    { 
+        id: 6, 
+        title: 'Epigraph Bookstore', 
+        stack: 'React.js • TypeScript • Vite • Tailwind', 
+        img: epigraphImg.src,
+        link: 'https://epigraph-bookstore.vercel.app'
     },
 ];
 

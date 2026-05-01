@@ -10,11 +10,11 @@ export default function Stats() {
                         <div className="font-mono text-xs text-[#A1A1AA]">UPTIME_MAINTAINED</div>
                     </div>
                     <div className="reveal-scale" style={{ transitionDelay: '100ms' }}>
-                        <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">50<span className="text-[#D4FF00]">+</span></div>
+                        <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">70<span className="text-[#D4FF00]">+</span></div>
                         <div className="font-mono text-xs text-[#A1A1AA]">REPOSITORIES</div>
                     </div>
                     <div className="reveal-scale" style={{ transitionDelay: '200ms' }}>
-                        <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">10<span className="text-[#D4FF00]">k+</span></div>
+                        <div className="text-4xl md:text-5xl font-black font-display mb-2 text-white">7<span className="text-[#D4FF00]">k+</span></div>
                         <div className="font-mono text-xs text-[#A1A1AA]">COMMITS_PUSHED</div>
                     </div>
                     <div className="reveal-scale" style={{ transitionDelay: '300ms' }}>
